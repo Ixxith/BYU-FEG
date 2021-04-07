@@ -6,18 +6,24 @@
     <h1>Enter Data Here.</h1>
 </div>
 
-<p>
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="#collapseExample">
-        Link with href
-    </a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Button with data-target
-    </button>
-</p>
-<div class="collapse" id="collapseExample">
-    <form><!--asp-action="AddRecord" method="post"-->
+
+<form>
+    <!--BURIAL INFO FORM-->
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#burialInfo" aria-expanded="false" aria-controls="burialInfo">
+            Burial Information
+        </button>
+    </p>
+    <div class="collapse" id="burialInfo">
+        <!--asp-action="AddRecord" method="post"-->
         <div class="form-group">
             <label>Burial Location N/S</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Pair N/S</label>
             <input />
             <span><!--asp-validation--></span>
         </div>
@@ -29,10 +35,192 @@
         </div>
 
         <div class="form-group">
+            <label>Pair E/W</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
             <label>Burial Subplot</label>
             <input />
             <span><!--asp-validation--></span>
         </div>
-    </form>
 
-</div>
+        <div class="form-group">
+            <label>Burial Depth</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>South To Head</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>South To Feet</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>East To Head</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>East To Feet</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Situation</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Length of Remains</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Number</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Year Found</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Month Found</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Day Found</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Head Direction</label>
+            <select>
+                <option value=""></option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+            </select>
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Preservation Index</label>
+            <select>
+                <option value=""></option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+            </select>
+            <span><!--asp-validation--></span>
+        </div>
+    </div>
+
+    <!--RESEARCHER BONE INFO FORM ***WORK IN PROGRESS-->
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneInfo" aria-expanded="false" aria-controls="boneInfo">
+            Bone Information
+        </button>
+    </p>
+    <div class="collapse" id="boneInfo">
+        <!--asp-action="AddRecord" method="post"-->
+        <div class="form-group">
+            <label>Burial Location N/S</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Pair N/S</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Location E/W</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Pair E/W</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Subplot</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Depth</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>South To Head</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>South To Feet</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>East To Head</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>East To Feet</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Situation</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Length of Remains</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+
+        <div class="form-group">
+            <label>Burial Number</label>
+            <input />
+            <span><!--asp-validation--></span>
+        </div>
+    </div>
+</form>
+
