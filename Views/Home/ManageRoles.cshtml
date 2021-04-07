@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<UserPermission>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">BYU NetID</th>
+            <th scope="col">Researcher</th>
+            <th scope="col">Admin</th>            
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserPermission u in Model)
+        {
+            <tr>
+                <th scope="row">@u.UserName</th>                
+                <td>@u.IsResearcher</td>
+                <td>@u.IsAdmin</td>
+
+                <td>
+                    <form asp-action="EditQuote" method="post">
+                        <input type="hidden" name="QuoteId" value="@u.Id" />
+                        <button class="btn btn-primary btn-sm" type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="RemoveQuote" method="post">
+                        <input type="hidden" name="QuoteId" value="@u.Id" />
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -28,17 +28,50 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
-        public IActionResult AddRecord()
+        public IActionResult ManageRoles()
         {
+            // Add db list of roles
             return View();
         }
 
-        public IActionResult Data()
+        public IActionResult RemoveQuote(UserPermission userPermission)
         {
+            // Use the quote/quoteId to remove the quote from the database and then save.
+            // _context.UserPermission.Remove(quote);
+            // _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult UserPermissionEdit(int permId)
+        {
+            //UserPermission up = _repository.UserPermission.FirstOrDefault(q => q.Id == permId);
+            //return View("AddQuote", up);
             return View();
         }
 
-        [Authorize]
+        [HttpGet]
+        public IActionResult UserPermissionNew()
+        {
+            // Add db list of roles
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UserPermissionNew(UserPermission userPermission)
+        {
+            if (ModelState.IsValid)
+            {
+                //_context.UserPermissions.Update(userPermission);
+                // _context.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+
+           return View();
+        }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             return View();

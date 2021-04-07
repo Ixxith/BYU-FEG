@@ -1,4 +1,5 @@
 using AspNetCore.Security.CAS;
+using BYU_FEG.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,12 +53,23 @@ namespace BYU_FEG
                         OnSigningIn = context =>
                         {
                             // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
-                            //var username = context.Principal.Identity.Name;
+                            var username = context.Principal.Identity.Name;
                             //var userSvc = context.HttpContext.RequestServices.GetRequiredService<UserService>();
-                           // var roles = userSvc.GetRoles(username);
-
+                            // var roles = userSvc.GetRoles(username);
+                            // Using the username, we will check the database for if that username exists.
+                            // If it does check if they have researcher and admin roles and if they do, give them corresponding roles
+                            List<String> roles = new List<string>();
+                            UserPermission userPermission = new UserPermission(); // db.FirstOrDefault(u => u.username = username)
+                            if (userPermission.IsResearcher)
+                            {
+                                roles.Add("User");
+                            };
+                            if (userPermission.IsAdmin)
+                            {
+                                roles.Add("Admin");
+                            };
                             // Hard coded roles.
-                            string[] roles = new[] { "User", "Admin" };
+                            // string[] roles = new[]{ "User", "Admin" };
 
                             // `AddClaim` is not available directly from `context.Principal.Identity`.
                             // We can add a new empty identity with the roles we want to the principal. 

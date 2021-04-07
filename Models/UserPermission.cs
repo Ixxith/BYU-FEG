@@ -9,6 +9,7 @@ namespace BYU_FEG.Models
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-        public string[] Permissions { get; set; }
+        public bool IsResearcher { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
