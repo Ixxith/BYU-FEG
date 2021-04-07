@@ -23,6 +23,16 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        public IActionResult Data()
+        {
+            return View();
+        }
+
+        public IActionResult AddRecord()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
