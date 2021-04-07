@@ -1,6 +1,8 @@
-using BYU_FEG.Data;
+using AspNetCore.Security.CAS;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BYU_FEG
@@ -27,11 +30,59 @@ namespace BYU_FEG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+         
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o =>
+                {
+                    o.LoginPath = new PathString("/login");
+
+                    o.AccessDeniedPath = new PathString("/access-denied");
+
+                    o.Cookie = new CookieBuilder
+                    {
+                        Name = ".AspNetCore.CasSample"
+                    };
+
+                    o.Events = new CookieAuthenticationEvents
+                    {
+                        // Add user roles to the existing identity.  
+                        // This example is giving every user "User" and "Admin" roles.
+                        // You can use services or other logic here to determine actual roles for your users.
+                        OnSigningIn = context =>
+                        {
+                            // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
+                            //var username = context.Principal.Identity.Name;
+                            //var userSvc = context.HttpContext.RequestServices.GetRequiredService<UserService>();
+                           // var roles = userSvc.GetRoles(username);
+
+                            // Hard coded roles.
+                            string[] roles = new[] { "User", "Admin" };
+
+                            // `AddClaim` is not available directly from `context.Principal.Identity`.
+                            // We can add a new empty identity with the roles we want to the principal. 
+                            var identity = new ClaimsIdentity();
+
+                            foreach (var role in roles)
+                            {
+                                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                            }
+
+                            context.Principal.AddIdentity(identity);
+                            
+                            return Task.FromResult(0);
+                        }
+                    };
+                })
+                .AddCAS(o =>
+                {
+                    o.CasServerUrlBase = Configuration["CasBaseUrl"];   // Set in `appsettings.json` file.
+                    o.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                });
+
+
+
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
