@@ -17,8 +17,17 @@ namespace BYU_FEG.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        //public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        //    _logger = logger;
+        //}
+
+        private BYUFEGContext context { get; set; }
+
+        public HomeController(BYUFEGContext con, ILogger<HomeController> logger, IConfiguration configuration)
         {
+            context = con;
             _configuration = configuration;
             _logger = logger;
         }
