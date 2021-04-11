@@ -39,7 +39,8 @@ namespace BYU_FEG.Controllers
 
         public IActionResult Data()
         {
-            return View();
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ActivityId);
+            return View(objs);
         }
 
         public IActionResult AddRecord()
