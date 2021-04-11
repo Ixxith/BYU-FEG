@@ -37,6 +37,12 @@ namespace BYU_FEG.Controllers
             return View(context.Byufeg);
         }
 
+        public IActionResult View()
+        {
+            List<Byufeg> byufeg = context.Byufeg.ToList();
+            return View(byufeg);
+        }
+
         public IActionResult Data()
         {
             return View();
