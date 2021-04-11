@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+//using static BYU_FEG.Models.Helper;
 
 namespace BYU_FEG
 {
@@ -31,7 +32,7 @@ namespace BYU_FEG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-         
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o =>
@@ -81,7 +82,7 @@ namespace BYU_FEG
                             }
 
                             context.Principal.AddIdentity(identity);
-                            
+
                             return Task.FromResult(0);
                         }
                     };
@@ -93,7 +94,11 @@ namespace BYU_FEG
                 });
 
 
-            services.AddDbContext<BYUFEGContext>();
+            services.AddDbContext<BYUFEGContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);
+            });
+
             
             services.AddControllersWithViews();
             services.AddRazorPages();

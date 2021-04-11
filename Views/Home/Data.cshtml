@@ -2,6 +2,15 @@
     ViewData["Title"] = "Burial Data";
 }
 
+@model IEnumerable<Byufeg> 
+
 <div class="text-center">
     <h1>This will be all of the Data.</h1>
 </div>
+
+
+@foreach (var x in Model)
+{
+    <p>@x.EstimateAge</p>
+    <br />
+}
