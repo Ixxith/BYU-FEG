@@ -5,33 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BYU_FEG.Models
 {
-    [Table("BYUFEG")]
     public partial class Byufeg
     {
-        [Column("BYUFEGId")]
+        public Byufeg()
+        {
+            Attachment = new HashSet<Attachment>();
+        }
+
         [Key]
-        [Required]
-        public int? Byufegid { get; set; }
+        public int ByufegId { get; set; }
         [Column("Burial_ID")]
-        [StringLength(26)]
-        public string BurialId { get; set; }
-        [Column("burial_location_NS")]
-        [StringLength(1)]
-        public string BurialLocationNs { get; set; }
-        [Column("burial_location_EW")]
-        [StringLength(1)]
-        public string BurialLocationEw { get; set; }
-        [Column("low_pair_NS")]
-        public int? LowPairNs { get; set; }
-        [Column("high_pair_NS")]
-        public int? HighPairNs { get; set; }
-        [Column("low_pair_EW")]
-        public int? LowPairEw { get; set; }
-        [Column("high_pair_EW")]
-        public int? HighPairEw { get; set; }
-        [Column("burial_subplot")]
-        [StringLength(2)]
-        public string BurialSubplot { get; set; }
+        public int? BurialId { get; set; }
         [Column("burial_depth", TypeName = "numeric(4, 1)")]
         public decimal? BurialDepth { get; set; }
         [Column("south_to_head")]
@@ -43,7 +27,7 @@ namespace BYU_FEG.Models
         [Column("east_to_feet")]
         public int? EastToFeet { get; set; }
         [Column("burial_situation")]
-        [StringLength(1092)]
+        [StringLength(1500)]
         public string BurialSituation { get; set; }
         [Column("length_of_remains")]
         public int? LengthOfRemains { get; set; }
@@ -52,12 +36,12 @@ namespace BYU_FEG.Models
         [Column("sample_number")]
         public int? SampleNumber { get; set; }
         [Column("gender_GE")]
-        [StringLength(12)]
+        [StringLength(20)]
         public string GenderGe { get; set; }
         [Column("GE_function_total", TypeName = "numeric(7, 4)")]
         public decimal? GeFunctionTotal { get; set; }
         [Column("gender_body_col")]
-        [StringLength(12)]
+        [StringLength(20)]
         public string GenderBodyCol { get; set; }
         [Column("basilar_suture")]
         [StringLength(6)]
@@ -140,10 +124,10 @@ namespace BYU_FEG.Models
         [Column("interorbital_breadth", TypeName = "numeric(4, 2)")]
         public decimal? InterorbitalBreadth { get; set; }
         [Column("artifacts_description")]
-        [StringLength(119)]
+        [StringLength(200)]
         public string ArtifactsDescription { get; set; }
         [Column("hair_color")]
-        [StringLength(6)]
+        [StringLength(10)]
         public string HairColor { get; set; }
         [Column("preservation_index")]
         [StringLength(3)]
@@ -164,7 +148,7 @@ namespace BYU_FEG.Models
         [StringLength(5)]
         public string TextileTaken { get; set; }
         [Column("description_of_taken")]
-        [StringLength(94)]
+        [StringLength(200)]
         public string DescriptionOfTaken { get; set; }
         [Column("artifact_found")]
         [StringLength(5)]
@@ -193,7 +177,54 @@ namespace BYU_FEG.Models
         [Column("day_found")]
         public int? DayFound { get; set; }
         [Column("head_direction")]
-        [StringLength(4)]
+        [StringLength(5)]
         public string HeadDirection { get; set; }
+        [Column("date_found")]
+        [StringLength(19)]
+        public string DateFound { get; set; }
+        public int? ActivityId { get; set; }
+        [StringLength(30)]
+        public string Rack { get; set; }
+        [StringLength(30)]
+        public string Shelf { get; set; }
+        [Column("Skull_Trauma")]
+        [StringLength(5)]
+        public string SkullTrauma { get; set; }
+        [Column("Postcrania_Trauma")]
+        [StringLength(5)]
+        public string PostcraniaTrauma { get; set; }
+        [Column("Cribra_Orbitala")]
+        [StringLength(5)]
+        public string CribraOrbitala { get; set; }
+        [Column("Porotic_Hyperostosis_Location")]
+        [StringLength(5)]
+        public string PoroticHyperostosisLocation { get; set; }
+        [Column("Metopic_Suture")]
+        [StringLength(5)]
+        public string MetopicSuture { get; set; }
+        [Column("Button_Osteoma")]
+        [StringLength(5)]
+        public string ButtonOsteoma { get; set; }
+        [Column("Postcrania_Trauma_1")]
+        [StringLength(5)]
+        public string PostcraniaTrauma1 { get; set; }
+        [Column("Osteology_unknown_comment")]
+        [StringLength(5)]
+        public string OsteologyUnknownComment { get; set; }
+        [Column("Temporal_Mandibular_Joint_Osteoarthritis_TMJ_OA")]
+        [StringLength(5)]
+        public string TemporalMandibularJointOsteoarthritisTmjOa { get; set; }
+        [Column("Linear_Hypoplasia_Enamel")]
+        [StringLength(5)]
+        public string LinearHypoplasiaEnamel { get; set; }
+
+        [ForeignKey(nameof(ActivityId))]
+        [InverseProperty("Byufeg")]
+        public virtual Activity Activity { get; set; }
+        [ForeignKey(nameof(BurialId))]
+        [InverseProperty("Byufeg")]
+        public virtual Burial Burial { get; set; }
+        [InverseProperty("Byufeg")]
+        public virtual ICollection<Attachment> Attachment { get; set; }
     }
 }

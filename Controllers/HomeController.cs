@@ -23,14 +23,14 @@ namespace BYU_FEG.Controllers
         //    _logger = logger;
         //}
 
-        private BYUFEGContext context { get; set; }
+        //private BYUFEGContext context { get; set; }
 
-        public HomeController(BYUFEGContext con, ILogger<HomeController> logger, IConfiguration configuration)
-        {
-            context = con;
-            _configuration = configuration;
-            _logger = logger;
-        }
+        //public HomeController(BYUFEGContext con, ILogger<HomeController> logger, IConfiguration configuration)
+        //{
+        //    context = con;
+        //    _configuration = configuration;
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
@@ -114,7 +114,7 @@ namespace BYU_FEG.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpGet("logout")]

@@ -93,7 +93,7 @@ namespace BYU_FEG
                 });
 
 
-            services.AddEntityFrameworkNpgsql();
+            services.AddDbContext<BYUFEGContext>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();
