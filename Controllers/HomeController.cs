@@ -51,49 +51,25 @@ namespace BYU_FEG.Controllers
 
         public IActionResult ManageRoles()
         {
-            // Add db list of roles
-            return View();
+            IEnumerable<UserPermission> userPermissions = context.UserPermission.OrderBy(u => u.Id);
+            return View(userPermissions);
         }
 
-        public IActionResult RemoveQuote(UserPermission userPermission)
+        public IActionResult RemoveUserPermission(int Id)
         {
-            // Use the quote/quoteId to remove the quote from the database and then save.
-            // _context.UserPermission.Remove(quote);
-            // _context.SaveChanges();
+            // Use the Id to remove the userPermission from the database and then save.
+            UserPermission userPermission = context.UserPermission.FirstOrDefault(u => u.Id == Id);
+            context.UserPermission.Remove(userPermission);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> FileUploadForm()
+        
+        public IActionResult UserPermissionEdit(int Id)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await FileUpload.FormFile.CopyToAsync(memoryStream);
-
-                if (memoryStream.Length < 2097152)
-                {
-                    await S3File.UploadFileAsync(memoryStream, "elasticbeanstalk-us-east-1-453718841465", "/resources/environments/logs/*");
-                }
-                else
-                {
-                    ModelState.AddModelError("File", "The file is too large");
-                }
-            }
-
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult UserPermissionEdit(int permId)
-        {
-            //UserPermission up = _repository.UserPermission.FirstOrDefault(q => q.Id == permId);
-            //return View("AddQuote", up);
-            return View();
+            UserPermission up = context.UserPermission.FirstOrDefault(u => u.Id == Id);
+            return View("UserPermissionNew", up);
+            
         }
 
         [HttpGet]
@@ -108,13 +84,21 @@ namespace BYU_FEG.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_context.UserPermissions.Update(userPermission);
-                // _context.SaveChanges();
-                return RedirectToAction("Index");
+                context.UserPermission.Update(userPermission);
+                context.SaveChanges();
+                return RedirectToAction("ManageRoles");
 
             }
 
            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EmulateUser(string netid)
+        {
+            
+
+            return View();
         }
 
         [Authorize(Roles = "Admin")]

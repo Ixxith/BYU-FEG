@@ -6,20 +6,21 @@
 
 @model UserPermission
 
-<div class="text-center">
+<div class="text-center container">
     <h1>
         @ViewBag.Title
     </h1>
     <div class="text-left">
-        <form asp-action="UserPermissionNew" method="post">
+        <form class="form-group" asp-action="UserPermissionNew" method="post">
             <!-- If this is a preexisting Quote, then we need to add a hidden field with the QuoteId so that we can update this record rather than make a new one-->
             @if (Model != null)
-            {<input type="hidden" asp-for="Id" name="QuoteId" value="@Model.Id" />}
+            {<input type="hidden" asp-for="Id" name="Id" value="@Model.Id" />}
             <label class="col-form-label" asp-for="UserName">NetId</label>
             <input class="form-control" asp-for="UserName" />
             <label class="col-form-label" asp-for="IsResearcher">Give researcher role?</label>
-            <input class="form-control" asp-for="IsAdmin" />
+            <input class="form-control" asp-for="IsResearcher" />
             <label class="col-form-label" asp-for="IsAdmin">Give admin role?</label>
+            <input class="form-control" asp-for="IsAdmin" />
             <br />
             <button type="submit" class="btn btn-dark">Submit</button>
             <br />
