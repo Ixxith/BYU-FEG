@@ -29,6 +29,8 @@ namespace BYU_FEG.Models
         public virtual DbSet<Byufeg> Byufeg { get; set; }
         public virtual DbSet<Person> Person { get; set; }
 
+        public virtual DbSet<UserPermission> UserPermission { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

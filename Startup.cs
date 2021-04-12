@@ -27,12 +27,27 @@ namespace BYU_FEG
             Configuration = configuration;
         }
 
+        public UserPermission findUserPermissions(IServiceCollection services, string username)
+        {
+            BYUFEGContext db = services.BuildServiceProvider().GetService<BYUFEGContext>();
+            UserPermission userPermission = db.UserPermission.FirstOrDefault(u => u.UserName == username);
+            return userPermission;
+        }
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            
+
+
+            services.AddDbContext<BYUFEGContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);
+            });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o =>
@@ -43,24 +58,25 @@ namespace BYU_FEG
 
                     o.Cookie = new CookieBuilder
                     {
-                        Name = ".AspNetCore.CasSample"
+                        Name = ".AspNetCore.CasLogin"
                     };
 
                     o.Events = new CookieAuthenticationEvents
                     {
-                        // Add user roles to the existing identity.  
-                        // This example is giving every user "User" and "Admin" roles.
-                        // You can use services or other logic here to determine actual roles for your users.
+                        // Add user roles to the existing identity.                          
                         OnSigningIn = context =>
                         {
                             // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
                             var username = context.Principal.Identity.Name;
+                           
                             //var userSvc = context.HttpContext.RequestServices.GetRequiredService<UserService>();
                             // var roles = userSvc.GetRoles(username);
                             // Using the username, we will check the database for if that username exists.
                             // If it does check if they have researcher and admin roles and if they do, give them corresponding roles
                             List<String> roles = new List<string>();
-                            UserPermission userPermission = new UserPermission(); // db.FirstOrDefault(u => u.username = username)
+                            UserPermission userPermission = findUserPermissions(services, username);
+
+
                             if (userPermission.IsResearcher)
                             {
                                 roles.Add("User");
@@ -93,13 +109,6 @@ namespace BYU_FEG
                     o.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 });
 
-
-            services.AddDbContext<BYUFEGContext>(options =>
-            {
-                options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);
-            });
-
-            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

@@ -5,38 +5,48 @@
 }
 
 @model IEnumerable<UserPermission>
+    <div class="container">
+        <br />
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">BYU NetID</th>
-            <th scope="col">Researcher</th>
-            <th scope="col">Admin</th>            
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (UserPermission u in Model)
-        {
-            <tr>
-                <th scope="row">@u.UserName</th>                
-                <td>@u.IsResearcher</td>
-                <td>@u.IsAdmin</td>
+        <h2> User Permission Manager </h2>
 
-                <td>
-                    <form asp-action="EditQuote" method="post">
-                        <input type="hidden" name="QuoteId" value="@u.Id" />
-                        <button class="btn btn-primary btn-sm" type="submit">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form asp-action="RemoveQuote" method="post">
-                        <input type="hidden" name="QuoteId" value="@u.Id" />
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <a class="btn btn-success" asp-action="UserPermissionNew"> Add new permission </a>
+
+        <br />
+        <br />
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">BYU NetID</th>
+                    <th scope="col">Researcher</th>
+                    <th scope="col">Admin</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (UserPermission u in Model)
+                {
+                    <tr>
+                        <th scope="row">@u.UserName</th>
+                        <td>@u.IsResearcher</td>
+                        <td>@u.IsAdmin</td>
+
+                        <td>
+                            <form asp-action="UserPermissionEdit" method="post">
+                                <input type="hidden" name="Id" value="@u.Id" />
+                                <button class="btn btn-primary btn-sm" type="submit">Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="RemoveUserPermission" method="post">
+                                <input type="hidden" name="Id" value="@u.Id" />
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

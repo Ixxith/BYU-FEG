@@ -50,24 +50,25 @@ namespace BYU_FEG.Controllers
 
         public IActionResult ManageRoles()
         {
-            // Add db list of roles
-            return View();
+            IEnumerable<UserPermission> userPermissions = context.UserPermission.OrderBy(u => u.Id);
+            return View(userPermissions);
         }
 
-        public IActionResult RemoveQuote(UserPermission userPermission)
+        public IActionResult RemoveUserPermission(int Id)
         {
-            // Use the quote/quoteId to remove the quote from the database and then save.
-            // _context.UserPermission.Remove(quote);
-            // _context.SaveChanges();
+            // Use the Id to remove the userPermission from the database and then save.
+            UserPermission userPermission = context.UserPermission.FirstOrDefault(u => u.Id == Id);
+            context.UserPermission.Remove(userPermission);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public IActionResult UserPermissionEdit(int permId)
+        
+        public IActionResult UserPermissionEdit(int Id)
         {
-            //UserPermission up = _repository.UserPermission.FirstOrDefault(q => q.Id == permId);
-            //return View("AddQuote", up);
-            return View();
+            UserPermission up = context.UserPermission.FirstOrDefault(u => u.Id == Id);
+            return View("UserPermissionNew", up);
+            
         }
 
         [HttpGet]
@@ -82,13 +83,21 @@ namespace BYU_FEG.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_context.UserPermissions.Update(userPermission);
-                // _context.SaveChanges();
-                return RedirectToAction("Index");
+                context.UserPermission.Update(userPermission);
+                context.SaveChanges();
+                return RedirectToAction("ManageRoles");
 
             }
 
            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EmulateUser(string netid)
+        {
+            
+
+            return View();
         }
 
         [Authorize(Roles = "Admin")]
