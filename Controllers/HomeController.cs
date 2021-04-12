@@ -76,9 +76,23 @@ namespace BYU_FEG.Controllers
                 );
         }
 
+        [HttpGet]
         public IActionResult AddRecord()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRecord(Byufeg byufeg)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Byufeg.Add(byufeg);
+                context.SaveChanges();
+                return RedirectToAction("Data");
+            }
+            else
+                return View();
         }
 
         public async Task<IActionResult> FileUploadForm()
