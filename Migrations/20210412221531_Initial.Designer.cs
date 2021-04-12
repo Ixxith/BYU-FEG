@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BYU_FEG.Migrations
 {
     [DbContext(typeof(BYUFEGContext))]
-    [Migration("20210411032924_Initial")]
+    [Migration("20210412221531_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -540,6 +540,28 @@ namespace BYU_FEG.Migrations
                     b.HasKey("PersonId");
 
                     b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("BYU_FEG.Models.UserPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsResearcher")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserPermission");
                 });
 
             modelBuilder.Entity("BYU_FEG.Models.ActivityToPerson", b =>
