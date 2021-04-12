@@ -12,5 +12,7 @@ namespace BYU_FEG.Models.ViewModel
         public PagingInfo PagingInfo { get; set; }
 
         public string[] CurrentFilters { get; set; }
+
+       
     }
 }
