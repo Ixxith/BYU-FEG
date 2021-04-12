@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,6 +61,31 @@ namespace BYU_FEG.Controllers
             // _context.UserPermission.Remove(quote);
             // _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> FileUploadForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await FileUpload.FormFile.CopyToAsync(memoryStream);
+
+                if (memoryStream.Length < 2097152)
+                {
+                    await S3File.UploadFileAsync(memoryStream, "elasticbeanstalk-us-east-1-453718841465", "/resources/environments/logs/*");
+                }
+                else
+                {
+                    ModelState.AddModelError("File", "The file is too large");
+                }
+            }
+
+            return View();
         }
 
         [HttpGet]

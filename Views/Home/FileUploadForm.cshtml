@@ -1,0 +1,19 @@
+﻿@*
+    View with form for uploading files to S3
+*@
+@{
+    ViewData["Title"] = "File Upload";
+}
+
+@model FileUploadFormModal
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            <label asp-for="FormFile"></label> <!--Alternatively, put FileUploadFormModal.FormFile in asp-for-->
+        </dt>
+        <dd>
+            <input asp-for="FormFile" type="file">
+        </dd>
+    </dl>
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload">
+</form>
