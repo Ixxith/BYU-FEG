@@ -42,23 +42,32 @@
 
                 <br />
 
-                <div class="row rounded border border-dark pt-3">
-                    <div class="form-group col">
-                        <label asp-for="BurialId">Burial Location</label>
-                        <select asp-for="BurialId" asp-items="ViewBag.Burials"></select>
-                        <span><!--asp-validation--></span>
+                <div class="rounded border border-dark pt-3">
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="BurialId">Burial Location</label>
+                            <select asp-for="BurialId" asp-items="ViewBag.Burials"></select>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div>
+                            <label>Don't see your Burial Location? Click to add new Burial.</label>
+                            <a asp-action="BurialForm">Add Burial</a>
+                        </div>
                     </div>
 
-                    <div class="form-group col">
-                        <label asp-for="BurialDepth">Burial Depth</label>
-                        <input asp-for="BurialDepth" />
-                        <span><!--asp-validation--></span>
-                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="BurialDepth">Burial Depth</label>
+                            <input asp-for="BurialDepth" />
+                            <span><!--asp-validation--></span>
+                        </div>
 
-                    <div class="form-group col">
-                        <label asp-for="BurialSituation">Burial Situation</label>
-                        <input asp-for="BurialSituation" />
-                        <span><!--asp-validation--></span>
+                        <div class="form-group col">
+                            <label asp-for="BurialSituation">Burial Situation</label>
+                            <input asp-for="BurialSituation" />
+                            <span><!--asp-validation--></span>
+                        </div>
                     </div>
                 </div>
 
@@ -139,11 +148,13 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneCranial" aria-expanded="false" aria-controls="boneCranial">
-                        Cranium
-                    </button>
-                </p>
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                        <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#boneCranial" aria-expanded="false" aria-controls="boneCranial">
+                            Cranium
+                        </button>
+                    </div>
+                </div>
                 <!--Cranial Information-->
                 <div class="border rounded border-dark collapse p-3" id="boneCranial">
 
@@ -358,11 +369,14 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bonePelvic" aria-expanded="false" aria-controls="bonePelvic">
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                    <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#bonePelvic" aria-expanded="false" aria-controls="bonePelvic">
                         Pelvis
                     </button>
-                </p>
+                    </div>
+                </div>
+
                 <!--Pelvic Information-->
                 <div class="border rounded border-dark collapse p-3" id="bonePelvic">
 
@@ -437,11 +451,13 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneLeg" aria-expanded="false" aria-controls="boneLeg">
-                        Legs
-                    </button>
-                </p>
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                        <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#boneLeg" aria-expanded="false" aria-controls="boneLeg">
+                            Legs
+                        </button>
+                    </div>
+                </div>
                 <!--Leg Information-->
                 <div class="border rounded border-dark collapse p-3" id="boneLeg">
 
@@ -476,11 +492,13 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneArm" aria-expanded="false" aria-controls="boneArm">
-                        Arms
-                    </button>
-                </p>
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                        <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#boneArm" aria-expanded="false" aria-controls="boneArm">
+                            Arms
+                        </button>
+                    </div>
+                </div>
                 <!--Arm Information-->
                 <div class="border rounded border-dark collapse p-3" id="boneArm">
 
@@ -508,11 +526,13 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneCenter" aria-expanded="false" aria-controls="boneCenter">
-                        Chest and Shoulders
-                    </button>
-                </p>
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                        <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#boneCenter" aria-expanded="false" aria-controls="boneCenter">
+                            Chest and Shoulders
+                        </button>
+                    </div>
+                </div>
                 <!--Center Mass/Shoulder Information-->
                 <div class="border rounded border-dark collapse p-3" id="boneCenter">
 
@@ -526,11 +546,13 @@
 
                 <br />
 
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneGeneral" aria-expanded="false" aria-controls="boneGeneral">
-                        Observations
-                    </button>
-                </p>
+                <div class="container">
+                    <div class="row justify-content-center pb-2">
+                        <button class="btn btn-primary col-4" type="button" data-toggle="collapse" data-target="#boneGeneral" aria-expanded="false" aria-controls="boneGeneral">
+                            Observations
+                        </button>
+                    </div>
+                </div>
                 <!--General Information-->
                 <div class="border rounded border-dark collapse p-3" id="boneGeneral">
 

@@ -182,6 +182,26 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpGet]
+        public IActionResult BurialForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BurialForm(Burial burial)
+        {
+            if (ModelState.IsValid)
+            {
+                burial.BurialConcat = $"{burial.BurialLocationNs}{burial.LowPairNs}{burial.HighPairNs}{burial.BurialLocationEw}{burial.LowPairEw}{burial.HighPairEw}{burial.BurialSubplot}";
+                context.Burial.Add(burial);
+                context.SaveChanges();
+                return RedirectToAction("AddRecord");
+            }
+            else
+                return View();
+        }
+
+        [HttpGet]
         public async Task<IActionResult> FileUploadForm(int byufegId)
         {
             ViewBag.BYUFEGID = byufegId;
