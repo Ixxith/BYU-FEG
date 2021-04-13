@@ -2,6 +2,7 @@
 using BYU_FEG.Models.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -103,6 +104,12 @@ namespace BYU_FEG.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
         {
+            /*using (var stream = FileUpload.FormFile.OpenReadStream())
+            {
+                var file = new FormFile(stream, 0, stream.Length, null, FileUpload.FormFile.FileName);
+                await S3File.UploadImage();
+            }*/
+
             using (var memoryStream = new MemoryStream())
             {
                 await FileUpload.FormFile.CopyToAsync(memoryStream);
@@ -110,7 +117,8 @@ namespace BYU_FEG.Controllers
                 // Upload the file if less than 2 MB
                 if (memoryStream.Length < 2097152)
                 {
-                    await S3File.UploadFileAsync(memoryStream, "elasticbeanstalk-us-east-1-453718841465", "/resources/environments/logs/*");
+                    await S3File.UploadImage(FileUpload.FormFile);
+                    //await S3File.UploadImage(memoryStream); old method
                 }
                 else
                 {
