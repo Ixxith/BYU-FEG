@@ -62,9 +62,9 @@ namespace BYU_FEG.Controllers
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip(page*PageSize).Take(PageSize);
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip((page - 1)*PageSize).Take(PageSize);
 
-                        return View(
+             return View(
                   new ResultListViewModel
                   {
                       bodies = objs,
@@ -105,7 +105,7 @@ namespace BYU_FEG.Controllers
                      (bf.datefoundbegin == null || b.DateFound >= bf.datefoundbegin) &&
                      (bf.datefoundend == null || b.DateFound <= bf.datefoundend)
 
-                );
+                ).Skip((page-1)*PageSize).Take(PageSize);
             ViewBag.Filter = bf;
             return View(
               new ResultListViewModel
@@ -115,7 +115,7 @@ namespace BYU_FEG.Controllers
                   PagingInfo = new PagingInfo
                   {
                       CurrentPage = page,
-                      ItemsPerPage = objs.Count(),
+                      ItemsPerPage = PageSize,
                       TotalNumItems = objs.Count(),
                       context = context
                   },

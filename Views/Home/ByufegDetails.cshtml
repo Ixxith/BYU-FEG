@@ -509,6 +509,10 @@
             @Html.DisplayFor(model => model.Burial.BurialId)
         </dd>*@
     </dl>
+    <form asp-action="FileUploadForm" method="get">
+        <input type="hidden" name="byufegId" value="@Model.byufeg.ByufegId" />
+        <button type="submit" class="btn btn-primary">Click to Add File</button>
+     </form>
 </div>
 <div>
     <!--Button to update data, passes Byufegid through hidden field-->
