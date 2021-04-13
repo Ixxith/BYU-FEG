@@ -140,24 +140,6 @@ namespace BYU_FEG.Controllers
         [HttpPost] //details view
         public IActionResult ByufegDetails(int ByufegId)
         {
-            //FIRST TRY
-            //Byufeg byufeg = context.Byufeg.Find(ByufegId);
-            //return View("Details", byufeg);
-
-            //SECOND TRY
-            //var Byufeg = new Byufeg() { };
-            //var Burial = new Burial() { };
-            //var Attachment = new Attachment() { };
-            //var DetailsViewModel = new DetailsViewModel
-            //{
-            //    byufeg = Byufeg,
-            //    burial = Burial,
-            //    attachment = Attachment
-            //};
-
-            //return View("Details", DetailsViewModel);
-
-            //THIRD TRY
             var byufeg = context.Byufeg.FirstOrDefault(x => x.ByufegId == ByufegId);
             return View(new DetailsViewModel
             {
@@ -165,6 +147,15 @@ namespace BYU_FEG.Controllers
                 attachment = context.Attachment.Where(x => x.ByufegId == ByufegId),
                 burial = context.Burial.FirstOrDefault(x => x.BurialId == byufeg.BurialId)
             });
+        }
+
+        [HttpPost]
+        public IActionResult ByufegDelete(int ByufegId)
+        {
+            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
+            context.Byufeg.Remove(byufeg);
+            context.SaveChanges();
+            return View("Data");
         }
 
         [HttpPost]
