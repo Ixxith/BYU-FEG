@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model ByufegFilter
+    
+      <div class="container">
+        <form asp-action="Data" method="post">
+            <button type="submit" class="btn btn-primary w-100">Filter</button>
+            <br />
+
+                <div class="form-group col">
+                    <label asp-for="burial">Burial Location</label>
+                    <select asp-for="burial" asp-items="ViewBag.Burials"><option value="" selected></option></select>
+
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="burialdepth">Burial Depth</label>
+                    <input asp-for="burialdepth" />
+
+                </div>
+
+                <div class="form-group col ">
+                    <label asp-for="burialsituation">Burial Situation</label>
+                    <input asp-for="burialsituation" />
+
+                </div>
+
+                <div class="form-group col ">
+                    <label asp-for="lengthofremains">Remain length</label>
+                    <input asp-for="lengthofremains" />
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="gender">Gender</label>
+                    <select asp-for="gender" asp-items="ViewBag.Genders"></select>
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="haircolor">Hair Color</label>
+                    <select asp-for="haircolor" asp-items="ViewBag.HairColors"></select>
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="itemtaken">Item taken</label>
+                    <select asp-for="itemtaken">
+                        <option value=""></option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="hasartifact">Has artifact</label>
+                    <select asp-for="hasartifact">
+                        <option value=""></option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="headdirection">Head Direction</label>
+                    <select asp-for="headdirection" asp-items="ViewBag.HeadDirections"></select>
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="estimatedage">Estimated age</label>
+                    <input asp-for="estimatedage" />
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="estimatedheight">Estimated height</label>
+                    <input asp-for="estimatedheight" />
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="datefoundbegin">Date found begin</label>
+                    <input asp-for="datefoundbegin" />
+                </div>
+
+                <div class="form-group col">
+                    <label asp-for="datefoundend">Date found end</label>
+                    <input asp-for="datefoundend" />
+                </div>
+
+
+           
+            
+        </form>
+    </div>        

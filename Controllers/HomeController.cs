@@ -30,6 +30,17 @@ namespace BYU_FEG.Controllers
 
         private BYUFEGContext context { get; set; }
 
+        public void updateViewbag()
+        {
+            ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text = $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}", Value = b.BurialId.ToString() });
+            var genders = context.Byufeg.Select(b => b.GenderBodyCol).Distinct();
+            ViewBag.Genders = new SelectList(genders);
+            var haircolor = context.Byufeg.Select(b => b.HairColor).Distinct();
+            ViewBag.HairColors = new SelectList(haircolor);
+            var hd = context.Byufeg.Select(b => b.HeadDirection).Distinct();
+            ViewBag.HeadDirections = new SelectList(hd);
+        }
+
         public HomeController(BYUFEGContext con, ILogger<HomeController> logger, IConfiguration configuration)
         {
             context = con;
@@ -47,21 +58,13 @@ namespace BYU_FEG.Controllers
         //    return View(context.Byufeg);
         //}
 
-        public IActionResult Data(string filters, int page = 1)
+        [HttpGet]
+        public IActionResult Data(int page = 1)
         {
-            string[] filterArray = filters.Split("_");
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId);
+            updateViewbag();
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip(page*PageSize).Take(PageSize);
 
-            foreach (string f in filterArray)
-            {
-                string[] vs = f.Split("-");
-                IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
-                objs.Intersect(filterobjs);
-            }
-
-
-
-            return View(
+                        return View(
                   new ResultListViewModel
                   {
                       bodies = objs,
@@ -74,13 +77,56 @@ namespace BYU_FEG.Controllers
                           context = context
                       },
 
-                      CurrentFilters = filterArray,
+                      
 
                   }
 
 
 
                 );
+        }
+
+        [HttpPost]
+        public IActionResult Data(ByufegFilter bf, int page = 1)
+        {
+            updateViewbag();
+            IEnumerable<Byufeg> objs = context.Byufeg.Where(
+                b => (bf.burial == null || b.BurialId == bf.burial) &&
+                     (bf.burialdepth == null || b.BurialDepth == bf.burialdepth) &&
+                     (string.IsNullOrEmpty(bf.burialsituation) || b.BurialSituation.ToLower().Contains(bf.burialsituation.ToLower())) &&
+                     (bf.lengthofremains == null || b.LengthOfRemains == bf.lengthofremains) &&
+                     (string.IsNullOrEmpty(bf.gender) || b.GenderBodyCol == bf.gender) &&
+                     (string.IsNullOrEmpty(bf.haircolor) || b.HairColor == bf.haircolor) &&
+                     (string.IsNullOrEmpty(bf.itemtaken) || ((bf.itemtaken=="False" && b.HairTaken=="False" && b.ToothTaken == "False" && b.BoneTaken == "False" && b.TextileTaken == "False" && b.SoftTissueTaken == "False") || (bf.itemtaken == "True" && (b.HairTaken == "True" || b.ToothTaken == "True" || b.BoneTaken == "True" || b.TextileTaken == "True" || b.SoftTissueTaken == "True")))) &&
+                     (string.IsNullOrEmpty(bf.hasartifact) || b.ArtifactFound == bf.hasartifact) &&
+                     (string.IsNullOrEmpty(bf.headdirection) || b.HeadDirection == bf.headdirection) &&
+                     (bf.estimatedage == null || b.EstimateAge == bf.estimatedage) &&
+                     (bf.estimatedheight == null || b.EstimateLivingStature == bf.estimatedheight) &&
+                     (bf.datefoundbegin == null || b.DateFound >= bf.datefoundbegin) &&
+                     (bf.datefoundend == null || b.DateFound <= bf.datefoundend)
+
+                );
+            ViewBag.Filter = bf;
+            return View(
+              new ResultListViewModel
+              {
+                  bodies = objs,
+
+                  PagingInfo = new PagingInfo
+                  {
+                      CurrentPage = page,
+                      ItemsPerPage = objs.Count(),
+                      TotalNumItems = objs.Count(),
+                      context = context
+                  },
+
+
+
+            }
+
+
+
+    );
         }
 
         [HttpGet]
