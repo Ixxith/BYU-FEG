@@ -6,14 +6,35 @@
 }
 
 @model FileUploadFormModal
-<form enctype="multipart/form-data" method="post">
-    <dl>
-        <dt>
-            <label asp-for="FormFile"></label> <!--Alternatively, put FileUploadFormModal.FormFile in asp-for-->
-        </dt>
-        <dd>
-            <input asp-for="FormFile" type="file">
-        </dd>
-    </dl>
-    <input asp-page-handler="FileUploadForm" class="btn" type="submit" value="Upload">
-</form>
+
+<div class="border border-secondary p-3">
+    <form enctype="multipart/form-data" method="post" asp-action="FileUploadForm">
+
+        <label>Attachment Category</label>
+        <input name="attachmentCategory" type="text" list="attachmentCategory" />
+        <datalist id="attachmentCategory">
+            <option value=""></option>
+            <option value="Bones">Bones</option>
+            <option value="Burial Site">Burial Site</option>
+            <option value="Bone Book">Bone Book</option>
+            <option value="Worker">Worker</option>
+            <option value="Artifact">Artifact</option>
+        </datalist>
+
+        <label>Attachment Description</label>
+        <input name="attachmentDescription" type="text" />
+
+        <input type="hidden" name="byufegId" value="@ViewBag.BYUFEGID" />
+
+        <dl>
+            <dt>
+                <label asp-for="FormFile"></label> <!--Alternatively, put FileUploadFormModal.FormFile in asp-for-->
+            </dt>
+            <dd>
+                <input asp-for="FormFile" type="file">
+            </dd>
+        </dl>
+        @*<input asp-page-handler="FileUploadForm" class="btn btn-success" type="submit" value="Upload">*@
+        <button type="submit">Upload</button>
+    </form>
+</div>

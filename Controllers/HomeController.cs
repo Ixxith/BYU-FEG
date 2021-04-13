@@ -144,19 +144,23 @@ namespace BYU_FEG.Controllers
             {
                 context.Byufeg.Add(byufeg);
                 context.SaveChanges();
-                return RedirectToAction("Data");
+                ViewBag.BYUFEGID = byufeg.ByufegId;
+                return View("FileUploadForm");
             }
             else
                 return View();
         }
 
-        public async Task<IActionResult> FileUploadForm()
+        [HttpGet]
+        public async Task<IActionResult> FileUploadForm(int byufegId)
         {
+            ViewBag.BYUFEGID = byufegId;
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
+        public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload, string attachmentCategory, string attachmentDescription, int byufegId)
         {
             /*using (var stream = FileUpload.FormFile.OpenReadStream())
             {
@@ -175,6 +179,9 @@ namespace BYU_FEG.Controllers
                     var name = FileUpload.FormFile.FileName.Replace(" ", "");
                     context.Attachment.Add(new Attachment()
                     {
+                        ByufegId = byufegId,
+                        Description = attachmentDescription,
+                        Category = attachmentCategory,
                         AttachmentUrl = $"https://elasticbeanstalk-us-east-1-453718841465.s3.amazonaws.com/{name}"
                     });
 
@@ -187,7 +194,7 @@ namespace BYU_FEG.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Data");
         }
 
         public IActionResult ManageRoles()
