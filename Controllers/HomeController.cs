@@ -82,7 +82,6 @@ namespace BYU_FEG.Controllers
         public IActionResult AddRecord()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
-            //ViewBag.Activities = context.Activity.Select(a => new SelectListItem() { Text = a.Date, Value = a.ActivityId.ToString() });
 
             return View();
         }

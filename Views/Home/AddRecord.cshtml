@@ -41,127 +41,98 @@
 
             <!--Burial Information-->
             <div id="burialInfo" class="container tab-pane active">
-                <br>
-                <h3>Burial Information</h3>
+
                 <br />
-                <div class="form-group">
-                    <label asp-for="Burial.BurialLocationNs">Burial Location N/S</label>
-                    <input />
-                    <span><!--asp-validation--></span>
+
+                <div class="row rounded border border-dark pt-3">
+                    <div class="form-group col">
+                        <label asp-for="BurialId">Burial Location</label>
+                        <select asp-for="BurialId" asp-items="ViewBag.Burials"></select>
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label asp-for="BurialDepth">Burial Depth</label>
+                        <input asp-for="BurialDepth" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label>Burial Situation</label>
+                        <input />
+                        <span><!--asp-validation--></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Pair N/S</label>
-                    <input />
-                    <span><!--asp-validation--></span>
+                <br />
+
+                <div class="row rounded bor border border-dark pt-3">
+                    <div class="form-group col">
+                        <label asp-for="SouthToHead">South To Head</label>
+                        <input asp-for="SouthToHead" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label asp-for="SouthToFeet">South To Feet</label>
+                        <input asp-for="SouthToFeet" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label asp-for="EastToHead">East To Head</label>
+                        <input asp-for="EastToHead" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label asp-for="EastToFeet">East To Feet</label>
+                        <input asp-for="EastToFeet" />
+                        <span><!--asp-validation--></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Burial Location E/W</label>
-                    <input />
-                    <span><!--asp-validation--></span>
+                <br />
+
+                <div class="row rounded bor border border-dark pt-3">
+                    <div class="form-group col">
+                        <label asp-for="LengthOfRemains">Length of Remains</label>
+                        <input asp-for="LengthOfRemains" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="form-group col">
+                        <label asp-for="BurialNumber">Burial Number</label>
+                        <input asp-for="BurialNumber" />
+                        <span><!--asp-validation--></span>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="HeadDirection">Head Direction</label>
+                            <select asp-for="HeadDirection">
+                                <option value=""></option>
+                                <option value="East">East</option>
+                                <option value="West">West</option>
+                            </select>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PreservationIndex">Preservation Index</label>
+                            <select asp-for="PreservationIndex">
+                                <option value=""></option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                            </select>
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Pair E/W</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Burial Subplot</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="BurialDepth">Burial Depth</label>
-                    <input asp-for="BurialDepth" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="SouthToHead">South To Head</label>
-                    <input asp-for="SouthToHead" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="SouthToFeet">South To Feet</label>
-                    <input asp-for="SouthToFeet" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="EastToHead">East To Head</label>
-                    <input asp-for="EastToHead" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="EastToFeet">East To Feet</label>
-                    <input asp-for="EastToFeet" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Burial Situation</label>
-                    <input/>
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="LengthOfRemains">Length of Remains</label>
-                    <input asp-for="LengthOfRemains" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="BurialNumber">Burial Number</label>
-                    <input asp-for="BurialNumber" />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <!--<div class="form-group">
-                    <label asp-for="YearFound">Year Found</label>
-                    <input asp-for="YearFound" />
-                    <span>--><!--asp-validation--><!--</span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="MonthFound">Month Found</label>
-                    <input asp-for="MonthFound" />
-                    <span>--><!--asp-validation--><!--</span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="DayFound">Day Found</label>
-                    <input asp-for="DayFound"/>
-                    <span>--><!--asp-validation--><!--</span>
-                </div>-->
-
-                <div class="form-group">
-                    <label asp-for="HeadDirection">Head Direction</label>
-                    <select asp-for="HeadDirection">
-                        <option value=""></option>
-                        <option value="East">East</option>
-                        <option value="West">West</option>
-                    </select>
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="PreservationIndex">Preservation Index</label>
-                    <select asp-for="PreservationIndex">
-                        <option value=""></option>
-                        <option value="I">I</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="IV">IV</option>
-                        <option value="V">V</option>
-                    </select>
-                    <span><!--asp-validation--></span>
-                </div>
             </div>
 
 
@@ -170,21 +141,37 @@
                 <br>
                 <h3>Bone Information</h3>
                 <br />
-                <div class="form-group">
-                    <label>Basilar Suture</label>
-                    <select>
-                        <option value=""></option>
-                        <option value="Open">Open</option>
-                        <option value="Closed">Closed</option>
-                    </select>
-                    <span><!--asp-validation--></span>
+
+                <!--Cranial Information-->
+                <div class="border rounded border-dark">
+
+                    <div class="form-group">
+                        <label>Basilar Suture</label>
+                        <select>
+                            <option value=""></option>
+                            <option value="Open">Open</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                        <span><!--asp-validation--></span>
+                    </div>
+
                 </div>
 
-                <div class="form-group">
-                    <label>Ventral Arc</label>
-                    <input />
-                    <span><!--asp-validation--></span>
+                <!--Pubic Information-->
+                <div class="border rounded border-dark">
+
+                    <div class="form-group">
+                        <label>Ventral Arc</label>
+                        <input />
+                        <span><!--asp-validation--></span>
+                    </div>
+
                 </div>
+
+
+
+
+                
 
                 <div class="form-group">
                     <label>Subpubic Angle</label>
