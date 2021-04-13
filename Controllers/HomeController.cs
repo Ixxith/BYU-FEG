@@ -118,6 +118,11 @@ namespace BYU_FEG.Controllers
                 if (memoryStream.Length < 2097152)
                 {
                     await S3File.UploadImage(FileUpload.FormFile);
+                    var name = FileUpload.FormFile.FileName.Replace(" ", "");
+                    context.Attachment.Add(new Attachment()
+                    {
+                        AttachmentUrl = $"https://elasticbeanstalk-us-east-1-453718841465.s3.amazonaws.com/{name}"
+                    });
                     //await S3File.UploadImage(memoryStream); old method
                 }
                 else
