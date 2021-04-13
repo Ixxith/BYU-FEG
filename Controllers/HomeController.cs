@@ -177,6 +177,8 @@ namespace BYU_FEG.Controllers
                     {
                         AttachmentUrl = $"https://elasticbeanstalk-us-east-1-453718841465.s3.amazonaws.com/{name}"
                     });
+
+                    context.SaveChanges();
                     //await S3File.UploadImage(memoryStream); old method
                 }
                 else
