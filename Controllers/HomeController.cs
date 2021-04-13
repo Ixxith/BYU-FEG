@@ -134,6 +134,7 @@ namespace BYU_FEG.Controllers
         public IActionResult AddRecord()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
+            ViewBag.Update = false;
 
             return View();
         }
