@@ -62,7 +62,10 @@ namespace BYU_FEG.Controllers
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip((page - 1)*PageSize).Take(PageSize);
+            
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId)
+                .Skip((page - 1)*PageSize)
+                .Take(PageSize);
 
              return View(
                   new ResultListViewModel

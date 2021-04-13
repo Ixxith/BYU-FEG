@@ -176,7 +176,7 @@ namespace BYU_FEG.Models
         [Column("date_found")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
-        public DateTime DateFound { get; set; }
+        public DateTime? DateFound { get; set; }
         [StringLength(30)]
         public string Username { get; set; }
         [StringLength(30)]
