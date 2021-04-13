@@ -101,3 +101,7 @@ body {
     position: relative;
     display: inline-block;
 }
+
+.div-height{
+    height: 300px;
+}
