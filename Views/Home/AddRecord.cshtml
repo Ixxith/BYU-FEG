@@ -7,10 +7,30 @@
 </div>
 
 @model BYU_FEG.Models.Byufeg
+@*@if (ViewBag.Update == false)
+    {<div><form asp-action="AddRecord" method="post"></div>}
+    else
+    { <div><form asp-action="UpdateRecord" method="post"></div>}*@
 
-<form asp-action="AddRecord" method="post">
+@*<form asp-action=@if(ViewBag.Update == false){"AddRecord"}else{ "UpdateRecord"} method="post">*@
+
+@{string update = "";  }
+
+@if (ViewBag.Update == false) { update = "AddRecord"; } else { update = "UpdateRecord"; }
+
+<form asp-action="@update" method="post">
+
+
+
+    <!--Hidden field that can get passed to the controller to update right record-->
+    @if (ViewBag.Update == false) { }
+    else
+    {< input type="hidden" name="ByufegId" value="@Model.ByufegId" />}
+
+
 
     <!--Toggleable Tabs for Information Input-->
+
     <div class="container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
@@ -775,26 +795,30 @@
 
                     <input type="hidden" asp-for="Username" value="@User.Identity.Name" />
 
-                    
+
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-group-lg">Add Burial Information</button>
+                <button type="submit" class="btn btn-primary btn-group-lg">Save</button>
 
             </div>
 
             <!--SPECIALIZED LAB MEASUREMENTS-->
             <!--<div>
 
-                <div class="form-group">
-                    <label asp-for="Rack">Rack</label>
-                    <input asp-for="Rack" />
-                    <span>--><!--asp-validation--><!--</span>
-                </div>
+            <div class="form-group">
+                <label asp-for="Rack">Rack</label>
+                <input asp-for="Rack" />
+                <span>-->
+            <!--asp-validation-->
+            <!--</span>
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="Shelf">Shelf</label>
-                    <input asp-for="Shelf" />
-                    <span>--><!--asp-validation--><!--</span>
+            <div class="form-group">
+                <label asp-for="Shelf">Shelf</label>
+                <input asp-for="Shelf" />
+                <span>-->
+            <!--asp-validation-->
+            <!--</span>
                 </div>
 
             </div>-->
@@ -802,7 +826,7 @@
 
     </div>
 
-    
+
 
 </form>
 

@@ -136,6 +136,7 @@ namespace BYU_FEG.Controllers
         public IActionResult AddRecord()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
+            ViewBag.Update = false;
 
             return View();
         }
@@ -159,6 +160,27 @@ namespace BYU_FEG.Controllers
             context.Byufeg.Remove(byufeg);
             context.SaveChanges();
             return View("Data");
+        }
+
+        [HttpPost] //passes the move information into the update view
+        public IActionResult ByufegUpdate(int ByufegId)
+        {
+            ViewBag.Update = true;
+            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
+            return View("AddRecord", byufeg);
+        }
+
+
+        [HttpPost] //updates the form response and displays the updated movie list
+        public IActionResult UpdateRecord(Byufeg byufeg)
+        {
+            if (ModelState.IsValid)
+            {
+                //Update database
+                context.Byufeg.Update(byufeg);
+                context.SaveChanges();
+            }
+            return View("Data", context.Byufeg);
         }
 
         [HttpPost]
