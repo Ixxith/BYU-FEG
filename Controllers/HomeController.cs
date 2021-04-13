@@ -18,7 +18,7 @@ namespace BYU_FEG.Controllers
 {
     public class HomeController : Controller
     {
-        public int PageSize = 25;
+        public int PageSize = 10;
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
@@ -63,21 +63,19 @@ namespace BYU_FEG.Controllers
         {
             updateViewbag();
             
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId)
-                .Skip((page - 1)*PageSize)
-                .Take(PageSize);
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId);
 
              return View(
                   new ResultListViewModel
                   {
-                      bodies = objs,
+                      bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
                       PagingInfo = new PagingInfo
                       {
                           CurrentPage = page,
                           ItemsPerPage = PageSize,
                           TotalNumItems = objs.Count(),
-                          context = context
+                          
                       },
 
                       
@@ -105,31 +103,31 @@ namespace BYU_FEG.Controllers
                      (string.IsNullOrEmpty(bf.headdirection) || b.HeadDirection == bf.headdirection) &&
                      (bf.estimatedage == null || b.EstimateAge == bf.estimatedage) &&
                      (bf.estimatedheight == null || b.EstimateLivingStature == bf.estimatedheight) &&
-                     (bf.datefoundbegin == null || b.DateFound >= bf.datefoundbegin) &&
-                     (bf.datefoundend == null || b.DateFound <= bf.datefoundend)
+                     (b.DateFound == null || b.DateFound >= bf.datefoundbegin) &&
+                     (b.DateFound == null || b.DateFound <= bf.datefoundend)
 
-                ).Skip((page-1)*PageSize).Take(PageSize);
+                );
             ViewBag.Filter = bf;
             return View(
               new ResultListViewModel
               {
-                  bodies = objs,
+                  bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
                   PagingInfo = new PagingInfo
                   {
                       CurrentPage = page,
                       ItemsPerPage = PageSize,
                       TotalNumItems = objs.Count(),
-                      context = context
+                      filter =bf
                   },
 
 
 
-            }
+              }
 
 
 
-    );
+    ); ;
         }
 
         [HttpGet]
@@ -176,7 +174,7 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FileUploadForm(int byufegId)
+        public  IActionResult FileUploadForm(int byufegId)
         {
             ViewBag.BYUFEGID = byufegId;
 

@@ -11,7 +11,7 @@ namespace BYU_FEG.Models.ViewModel
         public IEnumerable<Byufeg> bodies { get; set; }
         public PagingInfo PagingInfo { get; set; }
 
-        public string[] CurrentFilters { get; set; }
+        
 
        
     }

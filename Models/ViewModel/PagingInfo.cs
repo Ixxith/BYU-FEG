@@ -9,11 +9,11 @@ namespace BYU_FEG.Models.ViewModel
     {
         // This class is used to contol paging for the Book database
         public int TotalNumItems { get; set; }
-        
+
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }
-        public int TotalPage => (int) Math.Ceiling((decimal) TotalNumItems / ItemsPerPage);
+        public int TotalPage => (int)Math.Ceiling((decimal)TotalNumItems / ItemsPerPage);
 
-        public BYUFEGContext context { get; set; }
+        public ByufegFilter filter {get; set;}
     }
 }
