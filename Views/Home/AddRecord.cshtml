@@ -3,7 +3,7 @@
 }
 
 <div class="text-center">
-    <h1>Enter Data Here.</h1>
+    <h1 class="display-4">Mummy Data Input</h1>
 </div>
 
 @model BYU_FEG.Models.Byufeg
@@ -37,8 +37,6 @@
         <!--Form for database input-->
         <div class="tab-content">
 
-
-
             <!--Burial Information-->
             <div id="burialInfo" class="container tab-pane active">
 
@@ -58,8 +56,8 @@
                     </div>
 
                     <div class="form-group col">
-                        <label >Burial Situation</label>
-                        <input />
+                        <label asp-for="BurialSituation">Burial Situation</label>
+                        <input asp-for="BurialSituation" />
                         <span><!--asp-validation--></span>
                     </div>
                 </div>
@@ -138,289 +136,445 @@
 
             <!--Researcher Bone Information-->
             <div id="boneInfo" class="container tab-pane">
-                <br>
-                <h3>Bone Information</h3>
+
                 <br />
 
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneCranial" aria-expanded="false" aria-controls="boneCranial">
+                        Cranium
+                    </button>
+                </p>
                 <!--Cranial Information-->
-                <div class="border rounded border-dark">
+                <div class="border rounded border-dark collapse p-3" id="boneCranial">
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="OrbitEdge">Orbit Edge</label>
+                            <input asp-for="OrbitEdge" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="ParietalBossing">Parietal Bossing</label>
+                            <input asp-for="ParietalBossing" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="Gonian">Gonian</label>
+                            <input asp-for="Gonian" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="NuchalCrest">Nuchal Crest</label>
+                            <input asp-for="NuchalCrest" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="ZygomaticCrest">Zygomatic Crest</label>
+                            <input asp-for="ZygomaticCrest" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="InterorbitalBreadth">Interorbital Breadth</label>
+                            <input asp-for="InterorbitalBreadth" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="MaximumCranialLength">Maximum Cranial Length</label>
+                            <input asp-for="MaximumCranialLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="MaximumCranialBreadth">Maximum Cranial Breadth</label>
+                            <input asp-for="MaximumCranialBreadth" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="BasionBregmaHeight">Basion Bregma Height</label>
+                            <input asp-for="BasionBregmaHeight" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="BasionNasion">Basion Nasion</label>
+                            <input asp-for="BasionNasion" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="BasionProsthionLength">Basion Prosthion Length</label>
+                            <input asp-for="BasionProsthionLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="BizygomaticDiameter">Bizygomatic Diameter</label>
+                            <input asp-for="BizygomaticDiameter" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="NasionProsthion">Nasion Prosthion</label>
+                            <input asp-for="NasionProsthion" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="MaximumNasalBreadth">Maximum Nasal Breadth</label>
+                            <input asp-for="MaximumNasalBreadth" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="ForemanMagnum">Foreman Magnum</label>
+                            <input asp-for="ForemanMagnum" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="SupraorbitalRidges">Supraorbital Ridges</label>
+                            <input asp-for="SupraorbitalRidges" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="ToothAttrition">Tooth Attrition</label>
+                            <input asp-for="ToothAttrition" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="ToothEruption">Tooth Eruption</label>
+                            <input asp-for="ToothEruption" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="SkullTrauma">Skull Trauma</label>
+                            <input asp-for="SkullTrauma" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="PostcraniaTrauma">Postcrania Trauma</label>
+                            <input asp-for="PostcraniaTrauma" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="LinearHypoplasiaEnamel">Linear Hypoplasia Enamel</label>
+                            <input asp-for="LinearHypoplasiaEnamel" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="PoroticHyperostosisLocation"> Porotic Hyperostosis Location</label>
+                            <input asp-for="PoroticHyperostosisLocation" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="MetopicSuture">Metopic Suture</label>
+                            <input asp-for="MetopicSuture" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="ButtonOsteoma">Button Osteoma</label>
+                            <input asp-for="ButtonOsteoma" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="CribraOrbitala">Cribra Orbitala</label>
+                            <input asp-for="CribraOrbitala" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="BasilarSuture">Basilar Suture</label>
+                            <select asp-for="BasilarSuture">
+                                <option value=""></option>
+                                <option value="Open">Open</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="CranialSuture">Cranial Suture</label>
+                            <input asp-for="CranialSuture" type="text" list="cranialSuture" />
+                            <datalist id="cranialSuture">
+                                <option value=""></option>
+                                <option value="Closed">Closed</option>
+                                <option value="Mosty Closed">Closed</option>
+                                <option value="Open">Open</option>
+                                <option value="Mostly Open">Mostly Open</option>
+                            </datalist>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <!--Cranial Sample Number, if taken-->
+                        <div class="form-group col">
+                            <label asp-for="SampleNumber">Sample Number</label>
+                            <input asp-for="SampleNumber" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bonePelvic" aria-expanded="false" aria-controls="bonePelvic">
+                        Pelvis
+                    </button>
+                </p>
+                <!--Pelvic Information-->
+                <div class="border rounded border-dark collapse p-3" id="bonePelvic">
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="VentralArc">Ventral Arc</label>
+                            <input asp-for="VentralArc" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="SubpubicAngle">Subpubic Angle</label>
+                            <input asp-for="SubpubicAngle" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="SciaticNotch">Sciatic Notch</label>
+                            <input asp-for="SciaticNotch" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="PubicBone">Pubic Bone</label>
+                            <input asp-for="PubicBone" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="PreaurSulcus">Preauricular Sulcus</label>
+                            <input asp-for="PreaurSulcus" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="MedialIpRamus">Medial IP Ramus</label>
+                            <input asp-for="MedialIpRamus" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="DorsalPitting">Dorsal Pitting</label>
+                            <input asp-for="DorsalPitting" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="PubicSymphysis">Pubic Symphysis</label>
+                            <select asp-for="PubicSymphysis">
+                                <option value=""></option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                            </select>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="IliacCrest">Iliac Crest</label>
+                            <input asp-for="IliacCrest" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneLeg" aria-expanded="false" aria-controls="boneLeg">
+                        Legs
+                    </button>
+                </p>
+                <!--Leg Information-->
+                <div class="border rounded border-dark collapse p-3" id="boneLeg">
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="FemurHead">Femur Head</label>
+                            <input asp-for="FemurHead" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="FemurDiameter">Femur Diameter</label>
+                            <input asp-for="FemurDiameter" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="FemurLength">Femur Length</label>
+                            <input asp-for="FemurLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="TibiaLength">Tibia Length</label>
+                            <input asp-for="TibiaLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneArm" aria-expanded="false" aria-controls="boneArm">
+                        Arms
+                    </button>
+                </p>
+                <!--Arm Information-->
+                <div class="border rounded border-dark collapse p-3" id="boneArm">
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="HumerusHead">Humerus Head</label>
+                            <input asp-for="HumerusHead" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="Humerus">Humerus</label>
+                            <input asp-for="Humerus" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="HumerusLength">Humerus Length</label>
+                            <input asp-for="HumerusLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneCenter" aria-expanded="false" aria-controls="boneCenter">
+                        Chest and Shoulders
+                    </button>
+                </p>
+                <!--Center Mass/Shoulder Information-->
+                <div class="border rounded border-dark collapse p-3" id="boneCenter">
 
                     <div class="form-group">
-                        <label>Basilar Suture</label>
-                        <select>
-                            <option value=""></option>
-                            <option value="Open">Open</option>
-                            <option value="Closed">Closed</option>
-                        </select>
+                        <label asp-for="MedialClavicle">Medial Clavicle</label>
+                        <input asp-for="MedialClavicle" />
                         <span><!--asp-validation--></span>
                     </div>
 
                 </div>
 
-                <!--Pubic Information-->
-                <div class="border rounded border-dark">
+                <br />
 
-                    <div class="form-group">
-                        <label>Ventral Arc</label>
-                        <input />
-                        <span><!--asp-validation--></span>
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boneGeneral" aria-expanded="false" aria-controls="boneGeneral">
+                        Observations
+                    </button>
+                </p>
+                <!--General Information-->
+                <div class="border rounded border-dark collapse p-3" id="boneGeneral">
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="Osteophytosis">Osteophytosis</label>
+                            <input asp-for="Osteophytosis" type="text" list="osteophytosis" />
+                            <datalist id="osteophytosis">
+                                <option value=""></option>
+                                <option value="None">None</option>
+                                <option value="Slight">Slight</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Heavy">Heavy</option>
+                            </datalist>
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="BoneLength">Bone Length</label>
+                            <input asp-for="BoneLength" />
+                            <span><!--asp-validation--></span>
+                        </div>
+
+                        <div class="form-group col">
+                            <label asp-for="Robust">Robust</label>
+                            <input asp-for="Robust" />
+                            <span><!--asp-validation--></span>
+                        </div>
                     </div>
 
-                </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="PathologyAnomalies">Pathology Anomalies</label>
+                            <input asp-for="PathologyAnomalies" />
+                            <span><!--asp-validation--></span>
+                        </div>
 
+                        <div class="form-group col">
+                            <label asp-for="EpiphysealUnion">Epiphyseal Union</label>
+                            <input asp-for="EpiphysealUnion" />
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
 
-
-
-                
-
-                <div class="form-group">
-                    <label>Subpubic Angle</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Sciatic Notch</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Pubic Bone</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Preauricular Sulcus</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Medial IP Ramus</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Dorsal Pitting</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Foreman Magnum</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Femur Head</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Humerus Head</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Osteophytosis</label>
-                    <input type="text" list="osteophytosis" />
-                    <datalist id="osteophytosis">
-                        <option value=""></option>
-                        <option value="None">None</option>
-                        <option value="Slight">Slight</option>
-                        <option value="Moderate">Moderate</option>
-                        <option value="Heavy">Heavy</option>
-                    </datalist>
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Pubic Symphysis</label>
-                    <select>
-                        <option value=""></option>
-                        <option value="I">I</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="IV">IV</option>
-                        <option value="V">V</option>
-                    </select>
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Bone Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Medial Clavicle</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Iliac Crest</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Femur Diameter</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Femur Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Humerus</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Humerus Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Tibia Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Robust</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Supraorbital Ridges</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Orbit Edge</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Parietal Bossing</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Gonian</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Nuchal Crest</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Zygomatic Crest</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Cranial Suture</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Cranial Suture</label>
-                    <input type="text" list="cranialSuture" />
-                    <datalist id="cranialSuture">
-                        <option value=""></option>
-                        <option value="Closed">Closed</option>
-                        <option value="Mosty Closed">Closed</option>
-                        <option value="Open">Open</option>
-                        <option value="Mostly Open">Mostly Open</option>
-                    </datalist>
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Maximum Cranial Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Maximum Cranial Breadth</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Basion Bregma Height</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Basion Nasion</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Basion Posthion Length</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Bizygomatic Diameter</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Nasion Prosthion</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Maximum Nasal Breadth</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <div class="form-group">
-                    <label>Interorbital Breadth</label>
-                    <input />
-                    <span><!--asp-validation--></span>
-                </div>
-
-                <!--Cranial Sample Number, if taken-->
-                <div class="form-group">
-                    <label>Sample Number</label>
-                    <input />
-                    <span><!--asp-validation--></span>
                 </div>
 
             </div>
@@ -428,200 +582,216 @@
 
             <!--Artifacts Information Section-->
             <div id="artifacts" class="container tab-pane">
-                <br>
-                <h3>Artifacts</h3>
+
                 <br />
 
-                <div class="form-group">
-                    <label>Artifacts Found?</label>
-                    <input onclick="yesnoCheck()" type="radio" id="artifactFoundY" name="artifactFound" value="True" />
-                    <label for="artifactFound">Yes</label>
-                    <input onclick="yesnoCheck()" type="radio" id="artifactFoundN" name="artifactFound" value="False" />
-                    <label for="artifactFound">No</label>
-                    <span><!--asp-validation--></span>
-                </div>
+                <div class="rounded border border-dark p-3">
+                    <div class="form-group">
+                        <label>Artifacts Found?</label>
+                        <input asp-for="ArtifactFound" onclick="yesnoCheck()" type="radio" id="artifactFoundY" name="artifactFound" value="True" />
+                        <label asp-for="ArtifactFound" for="artifactFound">Yes</label>
+                        <input asp-for="ArtifactFound" onclick="yesnoCheck()" type="radio" id="artifactFoundN" name="artifactFound" value="False" />
+                        <label asp-for="ArtifactFound" for="artifactFound">No</label>
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div id="ifYes" style="display:none">
-                    <label>Artifacts Description</label>
-                    <input />
-                    <span><!--asp-validation--></span>
+                    <div id="ifYes" style="display:none">
+                        <label asp-for="ArtifactsDescription">Artifacts Description</label>
+                        <input asp-for="ArtifactsDescription" />
+                        <span><!--asp-validation--></span>
+                    </div>
                 </div>
-
 
             </div>
 
 
             <!--Samples Taken Section-->
             <div id="samplesTaken" class="container tab-pane">
-                <br>
-                <h3>Samples Taken</h3>
-                <br />
-
-                <div class="row pl-3">
-                    <div class="form-group">
-                        <label>Hair Taken?</label>
-                        <input onclick="yesnoCheck2()" type="radio" id="hairTakenY" name="hairTaken" value="True" />
-                        <label for="hairTaken">Yes</label>
-                        <input onclick="yesnoCheck2()" type="radio" id="hairTakenN" name="hairTaken" value="False" />
-                        <label for="hairTaken">No</label>
-                        <span><!--asp-validation--></span>
-                    </div>
-                    <div class="pl-3" id="ifYes2" style="display:none">
-                        <label>Hair Description</label>
-                        <input />
-                        <span><!--asp-validation--></span>
-                    </div>
-                </div>
-
 
                 <br />
 
-                <div class="row pl-3">
-                    <div class="form-group">
-                        <label>Soft Tissue Taken?</label>
-                        <input onclick="yesnoCheck3()" type="radio" id="softTissueTakenY" name="softTissueTaken" value="True" />
-                        <label for="softTissueTaken">Yes</label>
-                        <input onclick="yesnoCheck3()" type="radio" id="softTissueTakenN" name="softTissueTaken" value="False" />
-                        <label for="softTissueTaken">No</label>
-                        <span><!--asp-validation--></span>
+                <div class="rounded border border-dark p-3">
+                    <div class="row pl-3">
+                        <div class="form-group">
+                            <label>Hair Taken?</label>
+                            <input asp-for="HairTaken" onclick="yesnoCheck2()" type="radio" id="hairTakenY" name="hairTaken" value="True" />
+                            <label asp-for="HairTaken" for="hairTaken">Yes</label>
+                            <input asp-for="HairTaken" onclick="yesnoCheck2()" type="radio" id="hairTakenN" name="hairTaken" value="False" />
+                            <label asp-for="HairTaken" for="hairTaken">No</label>
+                            <span><!--asp-validation--></span>
+                        </div>
+                        <div class="pl-3" id="ifYes2" style="display:none">
+                            <label asp-for="DescriptionOfTaken">Hair Description</label>
+                            <input asp-for="DescriptionOfTaken" />
+                            <span><!--asp-validation--></span>
+                        </div>
                     </div>
-                    <div class="pl-3" id="ifYes3" style="display:none">
-                        <label>Soft Tissue Description</label>
-                        <input />
-                        <span><!--asp-validation--></span>
+
+                    <br />
+
+                    <div class="row pl-3">
+                        <div class="form-group">
+                            <label>Soft Tissue Taken?</label>
+                            <input asp-for="SoftTissueTaken" onclick="yesnoCheck3()" type="radio" id="softTissueTakenY" name="softTissueTaken" value="True" />
+                            <label asp-for="SoftTissueTaken" for="softTissueTaken">Yes</label>
+                            <input asp-for="SoftTissueTaken" onclick="yesnoCheck3()" type="radio" id="softTissueTakenN" name="softTissueTaken" value="False" />
+                            <label asp-for="SoftTissueTaken" for="softTissueTaken">No</label>
+                            <span><!--asp-validation--></span>
+                        </div>
+                        <div class="pl-3" id="ifYes3" style="display:none">
+                            <label>Soft Tissue Description</label> <!--asp-for="DescriptionOfTaken"-->
+                            <input /> <!--asp-for="DescriptionOfTaken"-->
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row pl-3">
+                        <div class="form-group">
+                            <label>Bone Taken?</label>
+                            <input asp-for="BoneTaken" onclick="yesnoCheck4()" type="radio" id="boneTakenY" name="boneTaken" value="True" />
+                            <label asp-for="BoneTaken" for="boneTaken">Yes</label>
+                            <input asp-for="BoneTaken" onclick="yesnoCheck4()" type="radio" id="boneTakenN" name="boneTaken" value="False" />
+                            <label asp-for="BoneTaken" for="boneTaken">No</label>
+                            <span><!--asp-validation--></span>
+                        </div>
+                        <div class="pl-3" id="ifYes4" style="display:none">
+                            <label>Bone Description</label> <!--asp-for="DescriptionOfTaken"-->
+                            <input /> <!--asp-for="DescriptionOfTaken"-->
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row pl-3">
+                        <div class="form-group">
+                            <label>Tooth Taken?</label>
+                            <input asp-for="ToothTaken" onclick="yesnoCheck5()" type="radio" id="toothTakenY" name="toothTaken" value="True" />
+                            <label asp-for="ToothTaken" for="toothTaken">Yes</label>
+                            <input asp-for="ToothTaken" onclick="yesnoCheck5()" type="radio" id="toothTakenN" name="toothTaken" value="False" />
+                            <label asp-for="ToothTaken" for="toothTaken">No</label>
+                            <span><!--asp-validation--></span>
+                        </div>
+                        <div class="pl-3" id="ifYes5" style="display:none">
+                            <label>Tooth Description</label> <!--asp-for="DescriptionOfTaken"-->
+                            <input /> <!--asp-for="DescriptionOfTaken"-->
+                            <span><!--asp-validation--></span>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row pl-3">
+                        <div class="form-group">
+                            <label>Textile Taken?</label>
+                            <input asp-for="TextileTaken" onclick="yesnoCheck6()" type="radio" id="textileTakenY" name="textileTaken" value="True" />
+                            <label asp-for="TextileTaken" for="textileTaken">Yes</label>
+                            <input asp-for="TextileTaken" onclick="yesnoCheck6()" type="radio" id="textileTakenN" name="textileTaken" value="False" />
+                            <label asp-for="TextileTaken" for="textileTaken">No</label>
+                            <span><!--asp-validation--></span>
+                        </div>
+                        <div class="pl-3" id="ifYes6" style="display:none">
+                            <label>Textile Description</label> <!--asp-for="DescriptionOfTaken"-->
+                            <input /> <!--asp-for="DescriptionOfTaken"-->
+                            <span><!--asp-validation--></span>
+                        </div>
                     </div>
                 </div>
-
-                <br />
-
-                <div class="row pl-3">
-                    <div class="form-group">
-                        <label>Bone Taken?</label>
-                        <input onclick="yesnoCheck4()" type="radio" id="boneTakenY" name="boneTaken" value="True" />
-                        <label for="boneTaken">Yes</label>
-                        <input onclick="yesnoCheck4()" type="radio" id="boneTakenN" name="boneTaken" value="False" />
-                        <label for="boneTaken">No</label>
-                        <span><!--asp-validation--></span>
-                    </div>
-                    <div class="pl-3" id="ifYes4" style="display:none">
-                        <label>Bone Description</label>
-                        <input />
-                        <span><!--asp-validation--></span>
-                    </div>
-                </div>
-
-                <br />
-
-                <div class="row pl-3">
-                    <div class="form-group">
-                        <label>Tooth Taken?</label>
-                        <input onclick="yesnoCheck5()" type="radio" id="toothTakenY" name="toothTaken" value="True" />
-                        <label for="toothTaken">Yes</label>
-                        <input onclick="yesnoCheck5()" type="radio" id="toothTakenN" name="toothTaken" value="False" />
-                        <label for="toothTaken">No</label>
-                        <span><!--asp-validation--></span>
-                    </div>
-                    <div class="pl-3" id="ifYes5" style="display:none">
-                        <label>Tooth Description</label>
-                        <input />
-                        <span><!--asp-validation--></span>
-                    </div>
-                </div>
-
-                <br />
-
-                <div class="row pl-3">
-                    <div class="form-group">
-                        <label>Textile Taken?</label>
-                        <input onclick="yesnoCheck6()" type="radio" id="textileTakenY" name="textileTaken" value="True" />
-                        <label for="textileTaken">Yes</label>
-                        <input onclick="yesnoCheck6()" type="radio" id="textileTakenN" name="textileTaken" value="False" />
-                        <label for="textileTaken">No</label>
-                        <span><!--asp-validation--></span>
-                    </div>
-                    <div class="pl-3" id="ifYes6" style="display:none">
-                        <label>Textile Description</label>
-                        <input />
-                        <span><!--asp-validation--></span>
-                    </div>
-                </div>
-
 
             </div>
 
 
             <!--General Information Section-->
             <div id="generalInfo" class="container tab-pane">
-                <br>
-                <h3>General Information</h3>
+
                 <br />
 
-                <div class="form-group">
-                    <label asp-for="GeFunctionTotal">Giles/Elliot Function Total</label>
-                    <input asp-for="GeFunctionTotal" />
-                    <span><!--asp-validation--></span>
-                </div>
+                <div class="rounded border border-dark p-3">
+                    <div class="form-group">
+                        <label asp-for="GeFunctionTotal">Giles/Elliot Function Total</label>
+                        <input asp-for="GeFunctionTotal" />
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="GenderGe">Gender (as determined by the Giles/Elliot Function)</label>
-                    <select asp-for="GenderGe">
-                        <option value=""></option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Undetermined">Undetermined</option>
-                    </select>
-                    <span><!--asp-validation--></span>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="GenderGe">Gender (as determined by the Giles/Elliot Function)</label>
+                        <select asp-for="GenderGe">
+                            <option value=""></option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Undetermined">Undetermined</option>
+                        </select>
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="GenderBodyCol">Gender (as determined by body descriptions and measurements)</label>
-                    <select asp-for="GenderBodyCol">
-                        <option value=""></option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Undetermined">Undetermined</option>
-                    </select>
-                    <span><!--asp-validation--></span>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="GenderBodyCol">Gender (as determined by body descriptions and measurements)</label>
+                        <select asp-for="GenderBodyCol">
+                            <option value=""></option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Undetermined">Undetermined</option>
+                        </select>
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="EstimateAge">Estimate Age</label>
-                    <input asp-for="EstimateAge" type="number" />
-                    <span><!--asp-validation--></span>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="EstimateAge">Estimate Age</label>
+                        <input asp-for="EstimateAge" type="number" />
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="EstimateLivingStature">Estimate Living Stature (centimeters)</label>
-                    <input asp-for="EstimateLivingStature" />
-                    <span><!--asp-validation--></span>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="EstimateLivingStature">Estimate Living Stature (centimeters)</label>
+                        <input asp-for="EstimateLivingStature" />
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="HairColor">Hair Color</label>
-                    <input asp-for="HairColor" type="text" list="hairColor" />
-                    <datalist id="hairColor">
-                        <option value=""></option>
-                        <option value="Black">Black</option>
-                        <option value="Grey">Grey</option>
-                        <option value="Brown">Brown</option>
-                        <option value="Red">Red</option>
-                        <option value="Blonde">Blonde</option>
-                        <option value="Light">Light</option>
-                        <option value="Dark">Dark</option>
-                    </datalist>
-                    <span><!--asp-validation--></span>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="HairColor">Hair Color</label>
+                        <input asp-for="HairColor" type="text" list="hairColor" />
+                        <datalist id="hairColor">
+                            <option value=""></option>
+                            <option value="Black">Black</option>
+                            <option value="Grey">Grey</option>
+                            <option value="Brown">Brown</option>
+                            <option value="Red">Red</option>
+                            <option value="Blonde">Blonde</option>
+                            <option value="Light">Light</option>
+                            <option value="Dark">Dark</option>
+                        </datalist>
+                        <span><!--asp-validation--></span>
+                    </div>
 
-                <div class="form-group">
-                    <label asp-for="DateFound">Date Found</label>
-                    <input type="date" asp-for="DateFound" />
-                    <span><!--asp-validation--></span>
+                    <div class="form-group">
+                        <label asp-for="DateFound">Date Found</label>
+                        <input type="date" asp-for="DateFound" />
+                        <span><!--asp-validation--></span>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-group-lg">Add Burial Information</button>
 
             </div>
 
+            <!--SPECIALIZED LAB MEASUREMENTS-->
+            <!--<div>
+
+                <div class="form-group">
+                    <label asp-for="Rack">Rack</label>
+                    <input asp-for="Rack" />
+                    <span>--><!--asp-validation--><!--</span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Shelf">Shelf</label>
+                    <input asp-for="Shelf" />
+                    <span>--><!--asp-validation--><!--</span>
+                </div>
+
+            </div>-->
         </div>
 
     </div>

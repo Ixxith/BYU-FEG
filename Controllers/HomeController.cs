@@ -42,41 +42,46 @@ namespace BYU_FEG.Controllers
             return View(context.Byufeg);
         }
 
-        //public IActionResult Data(string filters, int page = 1)
+        //public IActionResult Data()
         //{
-        //    string[] filterArray = filters.Split("_");
-        //    IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ActivityId);
-
-        //    foreach (string f in filterArray)
-        //    {
-        //        string[] vs = f.Split("-");
-        //        IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
-        //        objs.Intersect(filterobjs);
-        //    }
-
-
-
-        //    return View(
-        //          new ResultListViewModel
-        //          {
-        //              bodies=objs,
-
-        //              PagingInfo = new PagingInfo
-        //              {
-        //                  CurrentPage = page,
-        //                  ItemsPerPage = PageSize,
-        //                  TotalNumItems = objs.Count(),
-        //                  context = context
-        //              },
-
-        //              CurrentFilters = filterArray,
-                     
-        //          }
-
-
-
-        //        );
+        //    return View(context.Byufeg);
         //}
+
+        public IActionResult Data(string filters, int page = 1)
+        {
+            string[] filterArray = filters.Split("_");
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId);
+
+            foreach (string f in filterArray)
+            {
+                string[] vs = f.Split("-");
+                IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
+                objs.Intersect(filterobjs);
+            }
+
+
+
+            return View(
+                  new ResultListViewModel
+                  {
+                      bodies = objs,
+
+                      PagingInfo = new PagingInfo
+                      {
+                          CurrentPage = page,
+                          ItemsPerPage = PageSize,
+                          TotalNumItems = objs.Count(),
+                          context = context
+                      },
+
+                      CurrentFilters = filterArray,
+
+                  }
+
+
+
+                );
+        }
 
         [HttpGet]
         public IActionResult AddRecord()
