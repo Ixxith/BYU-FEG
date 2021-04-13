@@ -53,3 +53,12 @@ function yesnoCheck6() {
         document.getElementById('ifYes6').style.display = 'none';
     }
 }
+
+//Code for File Upload Dynamic Input Hidden Button
+function yesnoCheckFile() {
+    if (document.getElementById('fileUpload').checked) {
+        document.getElementById('ifYesFile').style.display = 'grid';
+    } else {
+        document.getElementById('ifYesFile').style.display = 'none';
+    }
+}
