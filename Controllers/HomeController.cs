@@ -137,6 +137,13 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        [HttpPost] //details view
+        public IActionResult ByufegDetails(int ByufegId)
+        {
+            Byufeg byufeg = context.Byufeg.Find(ByufegId);
+            return View("Details", byufeg);
+        }
+
         [HttpPost]
         public IActionResult AddRecord(Byufeg byufeg)
         {

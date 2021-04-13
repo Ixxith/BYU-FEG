@@ -55,7 +55,13 @@
                         <td>@x.EstimateLivingStature </td>
                         <td>@x.DateFound</td>
                         <td></td>
-
+                        <td>
+                            <!--Button to update quote, passes quoteId through hidden field-->
+                            <form asp-action="ByufegDetails" method="post">
+                                <input type="hidden" name="ByufegId" value="@x.ByufegId" />
+                                <button class="btn-dark btn-sm pull-right text-light" type="submit">Details</button>
+                            </form>
+                        </td>
                     </tr>
                     }
 
