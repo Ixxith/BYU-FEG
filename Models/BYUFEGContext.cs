@@ -27,15 +27,17 @@ namespace BYU_FEG.Models
         public virtual DbSet<Attachment> Attachment { get; set; }
         public virtual DbSet<Burial> Burial { get; set; }
         public virtual DbSet<Byufeg> Byufeg { get; set; }
-        //public virtual DbSet<Person> Person { get; set; }
 
         public virtual DbSet<UserPermission> UserPermission { get; set; }
+        //public virtual DbSet<Person> Person { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+
                 optionsBuilder.UseSqlServer("Data Source=(local);initial catalog=BYUFEG; trusted_connection=yes;");
             }
         }
