@@ -19,7 +19,7 @@ namespace BYU_FEG.Infrastructure
     {
         private IUrlHelperFactory urlHelperFactory;
 
-        public PageLinkTagHelper (IUrlHelperFactory helperFactory)
+        public PageLinkTagHelper(IUrlHelperFactory helperFactory)
         {
             urlHelperFactory = helperFactory;
         }
@@ -32,7 +32,7 @@ namespace BYU_FEG.Infrastructure
         public string PageAction { get; set; }
 
         // Set up Dictionary for handling PageUrlValue classes
-        [HtmlAttributeName(DictionaryAttributePrefix ="page-url-")]
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
 
         public bool PageClassesEnabled { get; set; } = false;
@@ -53,7 +53,7 @@ namespace BYU_FEG.Infrastructure
                 TagBuilder tag = new TagBuilder("a");
 
                 PageUrlValues["page"] = i;
-                
+
 
                 tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
                 tag.InnerHtml.Append(i.ToString());
@@ -64,7 +64,7 @@ namespace BYU_FEG.Infrastructure
                     // If it's the current page, highlight the button by adding a Bootstrap class
                     tag.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
-                
+
                 result.InnerHtml.AppendHtml(tag);
             }
 
