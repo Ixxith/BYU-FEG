@@ -44,12 +44,12 @@ namespace BYU_FEG.Models
         {
             modelBuilder.Entity<Activity>(entity =>
             {
-                entity.Property(e => e.ActivityId).ValueGeneratedNever();
+                entity.Property(e => e.ActivityId);
             });
 
             modelBuilder.Entity<ActivityToPerson>(entity =>
             {
-                entity.Property(e => e.ActivityToPersonId).ValueGeneratedNever();
+                entity.Property(e => e.ActivityToPersonId);
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.ActivityToPerson)
@@ -64,7 +64,7 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Attachment>(entity =>
             {
-                entity.Property(e => e.AttachmentId).ValueGeneratedNever();
+                entity.Property(e => e.AttachmentId);
 
                 entity.HasOne(d => d.Byufeg)
                     .WithMany(p => p.Attachment)
@@ -74,12 +74,12 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Burial>(entity =>
             {
-                entity.Property(e => e.BurialId).ValueGeneratedNever();
+                entity.Property(e => e.BurialId);
             });
 
             modelBuilder.Entity<Byufeg>(entity =>
             {
-                entity.Property(e => e.ByufegId).ValueGeneratedNever();
+                entity.Property(e => e.ByufegId);
 
                 entity.HasOne(d => d.Activity)
                     .WithMany(p => p.Byufeg)
@@ -94,7 +94,7 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.Property(e => e.PersonId).ValueGeneratedNever();
+                entity.Property(e => e.PersonId);
             });
 
             OnModelCreatingPartial(modelBuilder);

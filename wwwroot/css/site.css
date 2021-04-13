@@ -71,5 +71,33 @@ body {
 }
 
 .pyramid-bg {
+    background-size: 100% auto;
+    background:content-box;
+    z-index: -1;
+}
+
+.width-100percent {
     width: 100%;
+}
+
+.title-position {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 40%; /* Adjust this value to move the positioned div up and down */
+    text-align: center;
+    width: 60%;
+}
+
+.container-local {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.photobg {
+    position: relative;
+    display: inline-block;
 }

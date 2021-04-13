@@ -40,10 +40,6 @@ namespace BYU_FEG
         public void ConfigureServices(IServiceCollection services)
         {
 
-
-            
-
-
             services.AddDbContext<BYUFEGContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);

@@ -53,4 +53,3 @@ function yesnoCheck6() {
         document.getElementById('ifYes6').style.display = 'none';
     }
 }
-

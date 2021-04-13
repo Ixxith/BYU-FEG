@@ -3,6 +3,7 @@ using BYU_FEG.Models.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -79,6 +80,9 @@ namespace BYU_FEG.Controllers
         [HttpGet]
         public IActionResult AddRecord()
         {
+            ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
+            ViewBag.Activities = context.Activity.Select(a => new SelectListItem() { Text = a.Date, Value = a.ActivityId.ToString() });
+
             return View();
         }
 

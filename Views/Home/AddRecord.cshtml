@@ -44,8 +44,36 @@
                 <br>
                 <h3>Burial Information</h3>
                 <br />
+
                 <div class="form-group">
-                    <label asp-for="Burial.BurialLocationNs">Burial Location N/S</label>
+                    <label asp-for="ActivityId">Activity</label>
+                    <select asp-for="ActivityId" asp-items="ViewBag.Activities">
+                    </select>
+                    <span><!--asp-validation--></span>
+                </div>
+
+                <!--<div class="form-group">
+                    <label asp-for="PersonId">Activity</label>
+                    <select asp-for="PersonId" asp-items="ViewBag.Persons">
+                    </select>
+                    <span>--><!--asp-validation--><!--</span>
+                </div>-->
+
+                <div class="form-group">
+                    <label asp-for="BurialId">Burial</label>
+                    <select asp-for="BurialId" asp-items="ViewBag.Burials">
+                    </select>
+                    <span><!--asp-validation--></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Click to UPLOAD Files/Photos</label>
+                    <a class="btn btn-outline-danger" asp-action="FileUploadForm" type="submit">Upload Photos</a>
+                    <span><!--asp-validation--></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Burial Location N/S</label>
                     <input />
                     <span><!--asp-validation--></span>
                 </div>
@@ -106,7 +134,7 @@
 
                 <div class="form-group">
                     <label>Burial Situation</label>
-                    <input/>
+                    <input />
                     <span><!--asp-validation--></span>
                 </div>
 
@@ -136,7 +164,7 @@
 
                 <div class="form-group">
                     <label asp-for="DayFound">Day Found</label>
-                    <input asp-for="DayFound"/>
+                    <input asp-for="DayFound" />
                     <span><!--asp-validation--></span>
                 </div>
 
