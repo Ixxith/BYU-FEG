@@ -1,4 +1,5 @@
-﻿
+﻿const { ScrollSpy } = require("bootstrap");
+
 
 //Code for Artifact Found Dynamic Input Hidden Fields
 function yesnoCheck() {
@@ -62,3 +63,4 @@ function yesnoCheckFile() {
         document.getElementById('ifYesFile').style.display = 'none';
     }
 }
+

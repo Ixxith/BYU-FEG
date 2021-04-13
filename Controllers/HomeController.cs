@@ -18,7 +18,7 @@ namespace BYU_FEG.Controllers
 {
     public class HomeController : Controller
     {
-        public int PageSize = 25;
+        public int PageSize = 10;
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
@@ -62,28 +62,29 @@ namespace BYU_FEG.Controllers
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip((page - 1)*PageSize).Take(PageSize);
 
-             return View(
-                  new ResultListViewModel
-                  {
-                      bodies = objs,
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId);
 
-                      PagingInfo = new PagingInfo
-                      {
-                          CurrentPage = page,
-                          ItemsPerPage = PageSize,
-                          TotalNumItems = objs.Count(),
-                          context = context
-                      },
+            return View(
+                 new ResultListViewModel
+                 {
+                     bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
-                      
+                     PagingInfo = new PagingInfo
+                     {
+                         CurrentPage = page,
+                         ItemsPerPage = PageSize,
+                         TotalNumItems = objs.Count(),
 
-                  }
+                     },
 
 
 
-                );
+                 }
+
+
+
+               );
         }
 
         [HttpPost]
@@ -97,36 +98,36 @@ namespace BYU_FEG.Controllers
                      (bf.lengthofremains == null || b.LengthOfRemains == bf.lengthofremains) &&
                      (string.IsNullOrEmpty(bf.gender) || b.GenderBodyCol == bf.gender) &&
                      (string.IsNullOrEmpty(bf.haircolor) || b.HairColor == bf.haircolor) &&
-                     (string.IsNullOrEmpty(bf.itemtaken) || ((bf.itemtaken=="False" && b.HairTaken=="False" && b.ToothTaken == "False" && b.BoneTaken == "False" && b.TextileTaken == "False" && b.SoftTissueTaken == "False") || (bf.itemtaken == "True" && (b.HairTaken == "True" || b.ToothTaken == "True" || b.BoneTaken == "True" || b.TextileTaken == "True" || b.SoftTissueTaken == "True")))) &&
+                     (string.IsNullOrEmpty(bf.itemtaken) || ((bf.itemtaken == "False" && b.HairTaken == "False" && b.ToothTaken == "False" && b.BoneTaken == "False" && b.TextileTaken == "False" && b.SoftTissueTaken == "False") || (bf.itemtaken == "True" && (b.HairTaken == "True" || b.ToothTaken == "True" || b.BoneTaken == "True" || b.TextileTaken == "True" || b.SoftTissueTaken == "True")))) &&
                      (string.IsNullOrEmpty(bf.hasartifact) || b.ArtifactFound == bf.hasartifact) &&
                      (string.IsNullOrEmpty(bf.headdirection) || b.HeadDirection == bf.headdirection) &&
                      (bf.estimatedage == null || b.EstimateAge == bf.estimatedage) &&
                      (bf.estimatedheight == null || b.EstimateLivingStature == bf.estimatedheight) &&
-                     (bf.datefoundbegin == null || b.DateFound >= bf.datefoundbegin) &&
-                     (bf.datefoundend == null || b.DateFound <= bf.datefoundend)
+                     (b.DateFound == null || b.DateFound >= bf.datefoundbegin) &&
+                     (b.DateFound == null || b.DateFound <= bf.datefoundend)
 
-                ).Skip((page-1)*PageSize).Take(PageSize);
+                );
             ViewBag.Filter = bf;
             return View(
               new ResultListViewModel
               {
-                  bodies = objs,
+                  bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
                   PagingInfo = new PagingInfo
                   {
                       CurrentPage = page,
                       ItemsPerPage = PageSize,
                       TotalNumItems = objs.Count(),
-                      context = context
+                      filter = bf
                   },
 
 
 
-            }
+              }
 
 
 
-    );
+    ); ;
         }
 
         [HttpGet]
