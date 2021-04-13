@@ -62,10 +62,7 @@ namespace BYU_FEG.Controllers
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
-            
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId)
-                .Skip((page - 1)*PageSize)
-                .Take(PageSize);
+            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.BurialId).Skip((page - 1)*PageSize).Take(PageSize);
 
              return View(
                   new ResultListViewModel
@@ -144,6 +141,24 @@ namespace BYU_FEG.Controllers
         [HttpPost] //details view
         public IActionResult ByufegDetails(int ByufegId)
         {
+            //FIRST TRY
+            //Byufeg byufeg = context.Byufeg.Find(ByufegId);
+            //return View("Details", byufeg);
+
+            //SECOND TRY
+            //var Byufeg = new Byufeg() { };
+            //var Burial = new Burial() { };
+            //var Attachment = new Attachment() { };
+            //var DetailsViewModel = new DetailsViewModel
+            //{
+            //    byufeg = Byufeg,
+            //    burial = Burial,
+            //    attachment = Attachment
+            //};
+
+            //return View("Details", DetailsViewModel);
+
+            //THIRD TRY
             var byufeg = context.Byufeg.FirstOrDefault(x => x.ByufegId == ByufegId);
             return View(new DetailsViewModel
             {
@@ -154,12 +169,23 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpPost]
-        public IActionResult ByufegDelete(int ByufegId)
+        public IActionResult AddRecord(Byufeg byufeg)
         {
-            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
-            context.Byufeg.Remove(byufeg);
-            context.SaveChanges();
-            return View("Data");
+            if (ModelState.IsValid)
+            {
+                context.Byufeg.Add(byufeg);
+                context.SaveChanges();
+                ViewBag.BYUFEGID = byufeg.ByufegId;
+                return View("FileUploadForm");
+            }
+            else
+                return View();
+        }
+
+        [HttpGet]
+        public IActionResult BurialForm()
+        {
+            return View();
         }
 
         [HttpPost] //passes the move information into the update view
@@ -184,14 +210,14 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRecord(Byufeg byufeg)
+        public IActionResult BurialForm(Burial burial)
         {
             if (ModelState.IsValid)
             {
-                context.Byufeg.Add(byufeg);
+                burial.BurialConcat = $"{burial.BurialLocationNs}{burial.LowPairNs}{burial.HighPairNs}{burial.BurialLocationEw}{burial.LowPairEw}{burial.HighPairEw}{burial.BurialSubplot}";
+                context.Burial.Add(burial);
                 context.SaveChanges();
-                ViewBag.BYUFEGID = byufeg.ByufegId;
-                return View("FileUploadForm");
+                return RedirectToAction("AddRecord");
             }
             else
                 return View();

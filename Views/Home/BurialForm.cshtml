@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Burial Site";
+}
+
+@model BYU_FEG.Models.Burial
+
+
+<form asp-action="BurialForm" method="post">
+
+    <div class="rounded border border-dark pt-3">
+        <div class="row">
+            <div class="form-group col">
+                <label asp-for="BurialLocationNs">Burial Location NS</label>
+                <input asp-for="BurialLocationNs"></input>
+                <span><!--asp-validation--></span>
+            </div>
+
+            <div class="form-group col">
+                <label asp-for="LowPairNs">Low Pair NS</label>
+                <input asp-for="LowPairNs" />
+                <span><!--asp-validation--></span>
+            </div>
+
+            <div class="form-group col">
+                <label asp-for="HighPairNs">High Pair NS</label>
+                <input asp-for="HighPairNs" />
+                <span><!--asp-validation--></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label asp-for="BurialLocationEw">Burial Location EW</label>
+                <input asp-for="BurialLocationEw"></input>
+                <span><!--asp-validation--></span>
+            </div>
+
+            <div class="form-group col">
+                <label asp-for="LowPairEw">Low Pair EW</label>
+                <input asp-for="LowPairEw" />
+                <span><!--asp-validation--></span>
+            </div>
+
+            <div class="form-group col">
+                <label asp-for="HighPairEw">High Pair EW</label>
+                <input asp-for="HighPairEw" />
+                <span><!--asp-validation--></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label asp-for="BurialSubplot">Burial Subplot</label>
+                <input asp-for="BurialSubplot"></input>
+                <span><!--asp-validation--></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit">Add Burial Location</button>
+
+</form>
