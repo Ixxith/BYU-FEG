@@ -56,7 +56,7 @@
                         <td>@x.DateFound</td>
                         <td></td>
                         <td>
-                            <!--Button to update quote, passes quoteId through hidden field-->
+                            <!--Button to see details of an item, passes ByufegId through hidden field-->
                             <form asp-action="ByufegDetails" method="post">
                                 <input type="hidden" name="ByufegId" value="@x.ByufegId" />
                                 <button class="btn-dark btn-sm pull-right text-light" type="submit">Details</button>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="align-items-center">
-    <div class="pagination p-1" style="display:inline-flex" page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn mr-3" page-class-selected="bg-primary text-white" page-class-normal="bg-light">
+    <div class="pagination p-1" style="display:inline-flex" page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn mr-3" page-class-selected="bg-primary text-white" page-class-normal="bg-dark">
 
     </div>
 </div>

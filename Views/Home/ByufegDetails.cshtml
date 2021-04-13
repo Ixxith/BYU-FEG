@@ -515,6 +515,16 @@
      </form>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.byufeg.ByufegId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!--Button to update data, passes Byufegid through hidden field-->
+    <form asp-action="ByufegUpdate" method="post">
+        <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
+        <button class="btn-dark btn-sm pull-right text-light" type="submit">Update</button>
+    </form>
+    <!--Button to delete quote, passes quoteId through hidden field-->
+    <form asp-action="ByufegDelete" method="post">
+        <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
+        <button class="btn-dark btn-sm pull-right text-light" type="submit">Delete</button>
+    </form>|
+
+    <button asp-action="Data"class="btn-dark btn-sm pull-right text-light" type="submit">Back to List</button>
 </div>
