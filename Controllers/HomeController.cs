@@ -1,4 +1,5 @@
 ﻿using BYU_FEG.Models;
+using BYU_FEG.Models.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,7 @@ namespace BYU_FEG.Controllers
 {
     public class HomeController : Controller
     {
+        public int PageSize = 25;
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
@@ -39,15 +41,59 @@ namespace BYU_FEG.Controllers
             return View(context.Byufeg);
         }
 
-        public IActionResult Data()
+        public IActionResult Data(string filters, int page = 1)
         {
+            string[] filterArray = filters.Split("_");
             IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ActivityId);
-            return View(objs);
+
+            foreach (string f in filterArray)
+            {
+                string[] vs = f.Split("-");
+                IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
+                objs.Intersect(filterobjs);
+            }
+
+
+
+            return View(
+                  new ResultListViewModel
+                  {
+                      bodies=objs,
+
+                      PagingInfo = new PagingInfo
+                      {
+                          CurrentPage = page,
+                          ItemsPerPage = PageSize,
+                          TotalNumItems = objs.Count(),
+                          context = context
+                      },
+
+                      CurrentFilters = filterArray,
+                     
+                  }
+
+
+
+                );
         }
 
+        [HttpGet]
         public IActionResult AddRecord()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRecord(Byufeg byufeg)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Byufeg.Add(byufeg);
+                context.SaveChanges();
+                return RedirectToAction("Data");
+            }
+            else
+                return View();
         }
 
         public async Task<IActionResult> FileUploadForm()

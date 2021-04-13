@@ -6,8 +6,9 @@
     <h1>Enter Data Here.</h1>
 </div>
 
+@model BYU_FEG.Models.Byufeg
 
-<form>
+<form asp-action="AddRecord" method="post">
 
     <!--Toggleable Tabs for Information Input-->
     <div class="container">
@@ -36,13 +37,15 @@
         <!--Form for database input-->
         <div class="tab-content">
 
+
+
             <!--Burial Information-->
             <div id="burialInfo" class="container tab-pane active">
                 <br>
                 <h3>Burial Information</h3>
                 <br />
                 <div class="form-group">
-                    <label>Burial Location N/S</label>
+                    <label asp-for="Burial.BurialLocationNs">Burial Location N/S</label>
                     <input />
                     <span><!--asp-validation--></span>
                 </div>
@@ -72,74 +75,74 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Burial Depth</label>
-                    <input />
+                    <label asp-for="BurialDepth">Burial Depth</label>
+                    <input asp-for="BurialDepth" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>South To Head</label>
-                    <input />
+                    <label asp-for="SouthToHead">South To Head</label>
+                    <input asp-for="SouthToHead" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>South To Feet</label>
-                    <input />
+                    <label asp-for="SouthToFeet">South To Feet</label>
+                    <input asp-for="SouthToFeet" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>East To Head</label>
-                    <input />
+                    <label asp-for="EastToHead">East To Head</label>
+                    <input asp-for="EastToHead" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>East To Feet</label>
-                    <input />
+                    <label asp-for="EastToFeet">East To Feet</label>
+                    <input asp-for="EastToFeet" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
                     <label>Burial Situation</label>
-                    <input />
+                    <input/>
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Length of Remains</label>
-                    <input />
+                    <label asp-for="LengthOfRemains">Length of Remains</label>
+                    <input asp-for="LengthOfRemains" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Burial Number</label>
-                    <input />
+                    <label asp-for="BurialNumber">Burial Number</label>
+                    <input asp-for="BurialNumber" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Year Found</label>
-                    <input />
+                    <label asp-for="YearFound">Year Found</label>
+                    <input asp-for="YearFound" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Month Found</label>
-                    <input />
+                    <label asp-for="MonthFound">Month Found</label>
+                    <input asp-for="MonthFound" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Day Found</label>
-                    <input />
+                    <label asp-for="DayFound">Day Found</label>
+                    <input asp-for="DayFound"/>
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Head Direction</label>
-                    <select>
+                    <label asp-for="HeadDirection">Head Direction</label>
+                    <select asp-for="HeadDirection">
                         <option value=""></option>
                         <option value="East">East</option>
                         <option value="West">West</option>
@@ -148,8 +151,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Preservation Index</label>
-                    <select>
+                    <label asp-for="PreservationIndex">Preservation Index</label>
+                    <select asp-for="PreservationIndex">
                         <option value=""></option>
                         <option value="I">I</option>
                         <option value="II">II</option>
@@ -567,14 +570,14 @@
                 <br />
 
                 <div class="form-group">
-                    <label>Giles/Elliot Function Total</label>
-                    <input />
+                    <label asp-for="GeFunctionTotal">Giles/Elliot Function Total</label>
+                    <input asp-for="GeFunctionTotal" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Gender (as determined by the Giles/Elliot Function)</label>
-                    <select>
+                    <label asp-for="GenderGe">Gender (as determined by the Giles/Elliot Function)</label>
+                    <select asp-for="GenderGe">
                         <option value=""></option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -584,8 +587,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Gender (as determined by body descriptions and measurements)</label>
-                    <select>
+                    <label asp-for="GenderBodyCol">Gender (as determined by body descriptions and measurements)</label>
+                    <select asp-for="GenderBodyCol">
                         <option value=""></option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -595,20 +598,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Estimate Age</label>
-                    <input type="number" />
+                    <label asp-for="EstimateAge">Estimate Age</label>
+                    <input asp-for="EstimateAge" type="number" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Estimate Living Stature (centimeters)</label>
-                    <input />
+                    <label asp-for="EstimateLivingStature">Estimate Living Stature (centimeters)</label>
+                    <input asp-for="EstimateLivingStature" />
                     <span><!--asp-validation--></span>
                 </div>
 
                 <div class="form-group">
-                    <label>Hair Color</label>
-                    <input type="text" list="hairColor" />
+                    <label asp-for="HairColor">Hair Color</label>
+                    <input asp-for="HairColor" type="text" list="hairColor" />
                     <datalist id="hairColor">
                         <option value=""></option>
                         <option value="Black">Black</option>
@@ -622,12 +625,15 @@
                     <span><!--asp-validation--></span>
                 </div>
 
+                <button type="submit" class="btn btn-primary btn-group-lg">Add Burial Information</button>
 
             </div>
 
         </div>
 
     </div>
+
+    
 
 </form>
 

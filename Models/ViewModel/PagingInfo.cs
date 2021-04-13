@@ -13,5 +13,7 @@ namespace BYU_FEG.Models.ViewModel
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPage => (int) Math.Ceiling((decimal) TotalNumItems / ItemsPerPage);
+
+        public BYUFEGContext context { get; set; }
     }
 }
