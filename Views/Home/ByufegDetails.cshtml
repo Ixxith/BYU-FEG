@@ -1,4 +1,4 @@
-﻿@model BYU_FEG.Models.Byufeg
+﻿@model BYU_FEG.Models.ViewModel.DetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,258 +11,264 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BurialDepth)
+            @Html.DisplayNameFor(model => model.byufeg.BurialDepth)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BurialDepth)
+            @Html.DisplayFor(model => model.byufeg.BurialDepth)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SouthToHead)
+            @Html.DisplayNameFor(model => model.byufeg.SouthToHead)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SouthToHead)
+            @Html.DisplayFor(model => model.byufeg.SouthToHead)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SouthToFeet)
+            @Html.DisplayNameFor(model => model.byufeg.SouthToFeet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SouthToFeet)
+            @Html.DisplayFor(model => model.byufeg.SouthToFeet)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EastToHead)
+            @Html.DisplayNameFor(model => model.byufeg.EastToHead)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EastToHead)
+            @Html.DisplayFor(model => model.byufeg.EastToHead)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EastToFeet)
+            @Html.DisplayNameFor(model => model.byufeg.EastToFeet)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EastToFeet)
+            @Html.DisplayFor(model => model.byufeg.EastToFeet)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BurialSituation)
+            @Html.DisplayNameFor(model => model.byufeg.BurialSituation)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BurialSituation)
+            @Html.DisplayFor(model => model.byufeg.BurialSituation)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LengthOfRemains)
+            @Html.DisplayNameFor(model => model.byufeg.LengthOfRemains)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LengthOfRemains)
+            @Html.DisplayFor(model => model.byufeg.LengthOfRemains)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BurialNumber)
+            @Html.DisplayNameFor(model => model.byufeg.BurialNumber)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BurialNumber)
+            @Html.DisplayFor(model => model.byufeg.BurialNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SampleNumber)
+            @Html.DisplayNameFor(model => model.byufeg.SampleNumber)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SampleNumber)
+            @Html.DisplayFor(model => model.byufeg.SampleNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GenderGe)
+            @Html.DisplayNameFor(model => model.byufeg.GenderGe)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.GenderGe)
+            @Html.DisplayFor(model => model.byufeg.GenderGe)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GeFunctionTotal)
+            @Html.DisplayNameFor(model => model.byufeg.GeFunctionTotal)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.GeFunctionTotal)
+            @Html.DisplayFor(model => model.byufeg.GeFunctionTotal)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GenderBodyCol)
+            @Html.DisplayNameFor(model => model.byufeg.GenderBodyCol)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.GenderBodyCol)
+            @Html.DisplayFor(model => model.byufeg.GenderBodyCol)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BasilarSuture)
+            @Html.DisplayNameFor(model => model.byufeg.BasilarSuture)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BasilarSuture)
+            @Html.DisplayFor(model => model.byufeg.BasilarSuture)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.VentralArc)
+            @Html.DisplayNameFor(model => model.byufeg.VentralArc)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.VentralArc)
+            @Html.DisplayFor(model => model.byufeg.VentralArc)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SubpubicAngle)
+            @Html.DisplayNameFor(model => model.byufeg.SubpubicAngle)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SubpubicAngle)
+            @Html.DisplayFor(model => model.byufeg.SubpubicAngle)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SciaticNotch)
+            @Html.DisplayNameFor(model => model.byufeg.SciaticNotch)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SciaticNotch)
+            @Html.DisplayFor(model => model.byufeg.SciaticNotch)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PubicBone)
+            @Html.DisplayNameFor(model => model.byufeg.PubicBone)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PubicBone)
+            @Html.DisplayFor(model => model.byufeg.PubicBone)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PreaurSulcus)
+            @Html.DisplayNameFor(model => model.byufeg.PreaurSulcus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PreaurSulcus)
+            @Html.DisplayFor(model => model.byufeg.PreaurSulcus)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MedialIpRamus)
+            @Html.DisplayNameFor(model => model.byufeg.MedialIpRamus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MedialIpRamus)
+            @Html.DisplayFor(model => model.byufeg.MedialIpRamus)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DorsalPitting)
+            @Html.DisplayNameFor(model => model.byufeg.DorsalPitting)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DorsalPitting)
+            @Html.DisplayFor(model => model.byufeg.DorsalPitting)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ForemanMagnum)
+            @Html.DisplayNameFor(model => model.byufeg.ForemanMagnum)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ForemanMagnum)
+            @Html.DisplayFor(model => model.byufeg.ForemanMagnum)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FemurHead)
+            @Html.DisplayNameFor(model => model.byufeg.FemurHead)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FemurHead)
+            @Html.DisplayFor(model => model.byufeg.FemurHead)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HumerusHead)
+            @Html.DisplayNameFor(model => model.byufeg.HumerusHead)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HumerusHead)
+            @Html.DisplayFor(model => model.byufeg.HumerusHead)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Osteophytosis)
+            @Html.DisplayNameFor(model => model.byufeg.Osteophytosis)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Osteophytosis)
+            @Html.DisplayFor(model => model.byufeg.Osteophytosis)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PubicSymphysis)
+            @Html.DisplayNameFor(model => model.byufeg.PubicSymphysis)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PubicSymphysis)
+            @Html.DisplayFor(model => model.byufeg.PubicSymphysis)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BoneLength)
+            @Html.DisplayNameFor(model => model.byufeg.BoneLength)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BoneLength)
+            @Html.DisplayFor(model => model.byufeg.BoneLength)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MedialClavicle)
+            @Html.DisplayNameFor(model => model.byufeg.MedialClavicle)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MedialClavicle)
+            @Html.DisplayFor(model => model.byufeg.MedialClavicle)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IliacCrest)
+            @Html.DisplayNameFor(model => model.byufeg.IliacCrest)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IliacCrest)
+            @Html.DisplayFor(model => model.byufeg.IliacCrest)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FemurDiameter)
+            @Html.DisplayNameFor(model => model.byufeg.FemurDiameter)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FemurDiameter)
+            @Html.DisplayFor(model => model.byufeg.FemurDiameter)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Humerus)
+            @Html.DisplayNameFor(model => model.byufeg.Humerus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Humerus)
+            @Html.DisplayFor(model => model.byufeg.Humerus)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FemurLength)
+            @Html.DisplayNameFor(model => model.byufeg.FemurLength)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FemurLength)
+            @Html.DisplayFor(model => model.byufeg.FemurLength)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HumerusLength)
+            @Html.DisplayNameFor(model => model.byufeg.HumerusLength)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HumerusLength)
+            @Html.DisplayFor(model => model.byufeg.HumerusLength)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TibiaLength)
+            @Html.DisplayNameFor(model => model.byufeg.TibiaLength)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TibiaLength)
+            @Html.DisplayFor(model => model.byufeg.TibiaLength)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Robust)
+            @Html.DisplayNameFor(model => model.byufeg.Robust)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Robust)
+            @Html.DisplayFor(model => model.byufeg.Robust)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SupraorbitalRidges)
+            @Html.DisplayNameFor(model => model.byufeg.SupraorbitalRidges)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SupraorbitalRidges)
+            @Html.DisplayFor(model => model.byufeg.SupraorbitalRidges)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.OrbitEdge)
+            @Html.DisplayNameFor(model => model.byufeg.OrbitEdge)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OrbitEdge)
+            @Html.DisplayFor(model => model.byufeg.OrbitEdge)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ParietalBossing)
+            @Html.DisplayNameFor(model => model.byufeg.ParietalBossing)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ParietalBossing)
+            @Html.DisplayFor(model => model.byufeg.ParietalBossing)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Gonian)
+            @Html.DisplayNameFor(model => model.byufeg.Gonian)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Gonian)
+            @Html.DisplayFor(model => model.byufeg.Gonian)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NuchalCrest)
+            @Html.DisplayNameFor(model => model.byufeg.NuchalCrest)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NuchalCrest)
+            @Html.DisplayFor(model => model.byufeg.NuchalCrest)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ZygomaticCrest)
+            @Html.DisplayNameFor(model => model.byufeg.ZygomaticCrest)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ZygomaticCrest)
+            @Html.DisplayFor(model => model.byufeg.ZygomaticCrest)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CranialSuture)
+            @Html.DisplayNameFor(model => model.byufeg.CranialSuture)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CranialSuture)
+            @Html.DisplayFor(model => model.byufeg.CranialSuture)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MaximumCranialLength)
+            @Html.DisplayNameFor(model => model.byufeg.MaximumCranialLength)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MaximumCranialLength)
+            @Html.DisplayFor(model => model.byufeg.MaximumCranialLength)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.burial.BurialConcat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.burial.BurialConcat)
+        </dd>
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MaximumCranialBreadth)
         </dt>
         <dd class="col-sm-10">
@@ -501,10 +507,10 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Burial.BurialId)
-        </dd>
+        </dd>*@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ByufegId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.byufeg.ByufegId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
