@@ -2,6 +2,7 @@
 using BYU_FEG.Models.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -41,41 +42,41 @@ namespace BYU_FEG.Controllers
             return View(context.Byufeg);
         }
 
-        public IActionResult Data(string filters, int page = 1)
-        {
-            string[] filterArray = filters.Split("_");
-            IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ActivityId);
+        //public IActionResult Data(string filters, int page = 1)
+        //{
+        //    string[] filterArray = filters.Split("_");
+        //    IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ActivityId);
 
-            foreach (string f in filterArray)
-            {
-                string[] vs = f.Split("-");
-                IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
-                objs.Intersect(filterobjs);
-            }
+        //    foreach (string f in filterArray)
+        //    {
+        //        string[] vs = f.Split("-");
+        //        IEnumerable<Byufeg> filterobjs = context.Byufeg.Where(b => vs[0] == vs[1]);
+        //        objs.Intersect(filterobjs);
+        //    }
 
 
 
-            return View(
-                  new ResultListViewModel
-                  {
-                      bodies=objs,
+        //    return View(
+        //          new ResultListViewModel
+        //          {
+        //              bodies=objs,
 
-                      PagingInfo = new PagingInfo
-                      {
-                          CurrentPage = page,
-                          ItemsPerPage = PageSize,
-                          TotalNumItems = objs.Count(),
-                          context = context
-                      },
+        //              PagingInfo = new PagingInfo
+        //              {
+        //                  CurrentPage = page,
+        //                  ItemsPerPage = PageSize,
+        //                  TotalNumItems = objs.Count(),
+        //                  context = context
+        //              },
 
-                      CurrentFilters = filterArray,
+        //              CurrentFilters = filterArray,
                      
-                  }
+        //          }
 
 
 
-                );
-        }
+        //        );
+        //}
 
         [HttpGet]
         public IActionResult AddRecord()
@@ -107,6 +108,12 @@ namespace BYU_FEG.Controllers
         [HttpPost]
         public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload)
         {
+            /*using (var stream = FileUpload.FormFile.OpenReadStream())
+            {
+                var file = new FormFile(stream, 0, stream.Length, null, FileUpload.FormFile.FileName);
+                await S3File.UploadImage();
+            }*/
+
             using (var memoryStream = new MemoryStream())
             {
                 await FileUpload.FormFile.CopyToAsync(memoryStream);
@@ -114,7 +121,13 @@ namespace BYU_FEG.Controllers
                 // Upload the file if less than 2 MB
                 if (memoryStream.Length < 2097152)
                 {
-                    await S3File.UploadFileAsync(memoryStream, "elasticbeanstalk-us-east-1-453718841465", "/resources/environments/logs/*");
+                    await S3File.UploadImage(FileUpload.FormFile);
+                    var name = FileUpload.FormFile.FileName.Replace(" ", "");
+                    context.Attachment.Add(new Attachment()
+                    {
+                        AttachmentUrl = $"https://elasticbeanstalk-us-east-1-453718841465.s3.amazonaws.com/{name}"
+                    });
+                    //await S3File.UploadImage(memoryStream); old method
                 }
                 else
                 {

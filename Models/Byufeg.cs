@@ -169,20 +169,16 @@ namespace BYU_FEG.Models
         [Column("epiphyseal_union")]
         [StringLength(12)]
         public string EpiphysealUnion { get; set; }
-        [Column("year_found")]
-        public int? YearFound { get; set; }
-        [Column("month_found")]
-        [StringLength(3)]
-        public string MonthFound { get; set; }
-        [Column("day_found")]
-        public int? DayFound { get; set; }
+
         [Column("head_direction")]
         [StringLength(5)]
         public string HeadDirection { get; set; }
         [Column("date_found")]
-        [StringLength(19)]
-        public string DateFound { get; set; }
-        public int? ActivityId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
+        public DateTime DateFound { get; set; }
+        [StringLength(30)]
+        public string Username { get; set; }
         [StringLength(30)]
         public string Rack { get; set; }
         [StringLength(30)]
@@ -218,9 +214,6 @@ namespace BYU_FEG.Models
         [StringLength(5)]
         public string LinearHypoplasiaEnamel { get; set; }
 
-        [ForeignKey(nameof(ActivityId))]
-        [InverseProperty("Byufeg")]
-        public virtual Activity Activity { get; set; }
         [ForeignKey(nameof(BurialId))]
         [InverseProperty("Byufeg")]
         public virtual Burial Burial { get; set; }

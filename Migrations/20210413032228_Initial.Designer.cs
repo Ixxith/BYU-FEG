@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BYU_FEG.Migrations
 {
     [DbContext(typeof(BYUFEGContext))]
-    [Migration("20210412221531_Initial")]
+    [Migration("20210413032228_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,40 +20,6 @@ namespace BYU_FEG.Migrations
                 .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BYU_FEG.Models.Activity", b =>
-                {
-                    b.Property<int>("ActivityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(19)")
-                        .HasMaxLength(19);
-
-                    b.HasKey("ActivityId");
-
-                    b.ToTable("Activity");
-                });
-
-            modelBuilder.Entity("BYU_FEG.Models.ActivityToPerson", b =>
-                {
-                    b.Property<int>("ActivityToPersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ActivityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ActivityToPersonId");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("ActivityToPerson");
-                });
 
             modelBuilder.Entity("BYU_FEG.Models.Attachment", b =>
                 {
@@ -134,9 +100,6 @@ namespace BYU_FEG.Migrations
                     b.Property<int>("ByufegId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ActivityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ArtifactFound")
                         .HasColumnName("artifact_found")
                         .HasColumnType("nvarchar(5)")
@@ -154,19 +117,19 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("BasionBregmaHeight")
                         .HasColumnName("basion_bregma_height")
-                        .HasColumnType("numeric(5, 2)");
+                        .HasColumnType("numeric(6, 2)");
 
                     b.Property<decimal?>("BasionNasion")
                         .HasColumnName("basion_nasion")
-                        .HasColumnType("numeric(5, 2)");
+                        .HasColumnType("numeric(6, 2)");
 
                     b.Property<decimal?>("BasionProsthionLength")
                         .HasColumnName("basion_prosthion_length")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal?>("BizygomaticDiameter")
                         .HasColumnName("bizygomatic_diameter")
-                        .HasColumnType("numeric(5, 2)");
+                        .HasColumnType("numeric(6, 2)");
 
                     b.Property<int?>("BoneLength")
                         .HasColumnName("bone_length")
@@ -209,14 +172,9 @@ namespace BYU_FEG.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasMaxLength(5);
 
-                    b.Property<string>("DateFound")
+                    b.Property<DateTime>("DateFound")
                         .HasColumnName("date_found")
-                        .HasColumnType("nvarchar(19)")
-                        .HasMaxLength(19);
-
-                    b.Property<int?>("DayFound")
-                        .HasColumnName("day_found")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DescriptionOfTaken")
                         .HasColumnName("description_of_taken")
@@ -254,11 +212,11 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("FemurHead")
                         .HasColumnName("femur_head")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal?>("FemurLength")
                         .HasColumnName("femur_length")
-                        .HasColumnType("numeric(3, 1)");
+                        .HasColumnType("numeric(4, 1)");
 
                     b.Property<int?>("ForemanMagnum")
                         .HasColumnName("foreman_magnum")
@@ -266,7 +224,7 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("GeFunctionTotal")
                         .HasColumnName("GE_function_total")
-                        .HasColumnType("numeric(7, 4)");
+                        .HasColumnType("numeric(8, 4)");
 
                     b.Property<string>("GenderBodyCol")
                         .HasColumnName("gender_body_col")
@@ -303,11 +261,11 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("HumerusHead")
                         .HasColumnName("humerus_head")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<decimal?>("HumerusLength")
                         .HasColumnName("humerus_length")
-                        .HasColumnType("numeric(3, 1)");
+                        .HasColumnType("numeric(4, 1)");
 
                     b.Property<int?>("IliacCrest")
                         .HasColumnName("iliac_crest")
@@ -315,7 +273,7 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("InterorbitalBreadth")
                         .HasColumnName("interorbital_breadth")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<int?>("LengthOfRemains")
                         .HasColumnName("length_of_remains")
@@ -328,15 +286,15 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("MaximumCranialBreadth")
                         .HasColumnName("maximum_cranial_breadth")
-                        .HasColumnType("numeric(5, 2)");
+                        .HasColumnType("numeric(6, 2)");
 
                     b.Property<decimal?>("MaximumCranialLength")
                         .HasColumnName("maximum_cranial_length")
-                        .HasColumnType("numeric(5, 2)");
+                        .HasColumnType("numeric(6, 2)");
 
                     b.Property<decimal?>("MaximumNasalBreadth")
                         .HasColumnName("maximum_nasal_breadth")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<int?>("MedialClavicle")
                         .HasColumnName("medial_clavicle")
@@ -351,14 +309,9 @@ namespace BYU_FEG.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasMaxLength(5);
 
-                    b.Property<string>("MonthFound")
-                        .HasColumnName("month_found")
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
-
                     b.Property<decimal?>("NasionProsthion")
                         .HasColumnName("nasion_prosthion")
-                        .HasColumnType("numeric(4, 2)");
+                        .HasColumnType("numeric(5, 2)");
 
                     b.Property<int?>("NuchalCrest")
                         .HasColumnName("nuchal_crest")
@@ -478,7 +431,7 @@ namespace BYU_FEG.Migrations
 
                     b.Property<decimal?>("TibiaLength")
                         .HasColumnName("tibia_length")
-                        .HasColumnType("numeric(3, 1)");
+                        .HasColumnType("numeric(4, 1)");
 
                     b.Property<string>("ToothAttrition")
                         .HasColumnName("tooth_attrition")
@@ -495,12 +448,12 @@ namespace BYU_FEG.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasMaxLength(5);
 
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
                     b.Property<int?>("VentralArc")
                         .HasColumnName("ventral_arc")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("YearFound")
-                        .HasColumnName("year_found")
                         .HasColumnType("int");
 
                     b.Property<int?>("ZygomaticCrest")
@@ -509,37 +462,9 @@ namespace BYU_FEG.Migrations
 
                     b.HasKey("ByufegId");
 
-                    b.HasIndex("ActivityId");
-
                     b.HasIndex("BurialId");
 
                     b.ToTable("Byufeg");
-                });
-
-            modelBuilder.Entity("BYU_FEG.Models.Person", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("SiteRole")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("PersonId");
-
-                    b.ToTable("Person");
                 });
 
             modelBuilder.Entity("BYU_FEG.Models.UserPermission", b =>
@@ -564,19 +489,6 @@ namespace BYU_FEG.Migrations
                     b.ToTable("UserPermission");
                 });
 
-            modelBuilder.Entity("BYU_FEG.Models.ActivityToPerson", b =>
-                {
-                    b.HasOne("BYU_FEG.Models.Activity", "Activity")
-                        .WithMany("ActivityToPerson")
-                        .HasForeignKey("ActivityId")
-                        .HasConstraintName("FK__ActivityT__Activ__534D60F1");
-
-                    b.HasOne("BYU_FEG.Models.Person", "Person")
-                        .WithMany("ActivityToPerson")
-                        .HasForeignKey("PersonId")
-                        .HasConstraintName("FK__ActivityT__Perso__5441852A");
-                });
-
             modelBuilder.Entity("BYU_FEG.Models.Attachment", b =>
                 {
                     b.HasOne("BYU_FEG.Models.Byufeg", "Byufeg")
@@ -587,11 +499,6 @@ namespace BYU_FEG.Migrations
 
             modelBuilder.Entity("BYU_FEG.Models.Byufeg", b =>
                 {
-                    b.HasOne("BYU_FEG.Models.Activity", "Activity")
-                        .WithMany("Byufeg")
-                        .HasForeignKey("ActivityId")
-                        .HasConstraintName("FK__Byufeg__Activity__5812160E");
-
                     b.HasOne("BYU_FEG.Models.Burial", "Burial")
                         .WithMany("Byufeg")
                         .HasForeignKey("BurialId")
