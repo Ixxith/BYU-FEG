@@ -66,7 +66,7 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Attachment>(entity =>
             {
-                entity.Property(e => e.AttachmentId).ValueGeneratedNever();
+                //entity.Property(e => e.AttachmentId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Byufeg)
                     .WithMany(p => p.Attachment)
@@ -76,12 +76,12 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Burial>(entity =>
             {
-                entity.Property(e => e.BurialId).ValueGeneratedNever();
+                //entity.Property(e => e.BurialId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Byufeg>(entity =>
             {
-                entity.Property(e => e.ByufegId).ValueGeneratedNever();
+                //entity.Property(e => e.ByufegId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Burial)
                     .WithMany(p => p.Byufeg)
