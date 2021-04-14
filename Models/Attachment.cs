@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+//Last updated: 4-13-2021
+//Model for the attachment table in the database. PK = AttachmentId, FK = ByufegId
+
 namespace BYU_FEG.Models
 {
     public partial class Attachment
