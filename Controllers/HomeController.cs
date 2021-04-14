@@ -251,7 +251,7 @@ namespace BYU_FEG.Controllers
         }
         [Authorize(Roles = "User")]
         [HttpGet]
-        public async Task<IActionResult> FileUploadForm(int byufegId)
+        public IActionResult FileUploadForm(int byufegId)
         {
             ViewBag.BYUFEGID = byufegId;
 
@@ -427,7 +427,7 @@ namespace BYU_FEG.Controllers
 
             // Do a full CAS logout.  
             // This removes the user's CAS auth cookie from the CAS domain.
-            return Redirect($"{_configuration["CasBaseUrl"]}/logout");
+            return Redirect($"{_configuration["CasBaseUrl"]}/logout"+ "?url=https://byufeg.demarsweb.com/");
 
             // Send them back to the home page.  
             // The user will remain signed into CAS. This means that if they again 
