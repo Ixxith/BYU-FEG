@@ -7,36 +7,53 @@
 
 @model FileUploadFormModal
 
-<div class="border border-secondary p-3">
+<div class="container rounded border border-secondary p-3">
     <form enctype="multipart/form-data" method="post" asp-action="FileUploadForm">
-        <br />
-        <br />
-        <a class="btn btn-outline-primary" asp-action="Data">Continue without Attachment</a>
 
-        <label>Attachment Category</label>
-        <input name="attachmentCategory" type="text" list="attachmentCategory" />
-        <datalist id="attachmentCategory">
-            <option value=""></option>
-            <option value="Bones">Bones</option>
-            <option value="Burial Site">Burial Site</option>
-            <option value="Bone Book">Bone Book</option>
-            <option value="Worker">Worker</option>
-            <option value="Artifact">Artifact</option>
-        </datalist>
+        <div class="p-3 container">
+            <div class="row justify-content-end">
+                <a class="col-3 btn btn-outline-primary" asp-action="Data">Continue without Attachment</a>
+            </div>
+        </div>
 
-        <label>Attachment Description</label>
-        <input name="attachmentDescription" type="text" />
+        <div class="row form-group">
+            <div class="form-group col-2">
+                <label>Attachment Category</label>
+                <input name="attachmentCategory" type="text" list="attachmentCategory" />
+                <datalist id="attachmentCategory">
+                    <option value=""></option>
+                    <option value="Bones">Bones</option>
+                    <option value="Burial Site">Burial Site</option>
+                    <option value="Bone Book">Bone Book</option>
+                    <option value="Worker">Worker</option>
+                    <option value="Artifact">Artifact</option>
+                </datalist>
+            </div>
+
+            <div class="form-group col-4 pl-4">
+                <label>Attachment Description</label>
+                <input name="attachmentDescription" type="text" />
+            </div>
+        </div>
 
         <input type="hidden" name="byufegId" value="@ViewBag.BYUFEGID" />
 
-        <dl>
-            <dt>
-                <label asp-for="FormFile"></label> <!--Alternatively, put FileUploadFormModal.FormFile in asp-for-->
-            </dt>
-            <dd>
-                <input asp-for="FormFile" type="file">
-            </dd>
-        </dl>
-        <button type="submit">Upload</button>
+        <div class="container">
+            <div class="row">
+                <dl>
+                    <dt>
+                        <label class="text-capitalize" asp-for="FormFile"></label> <!--Alternatively, put FileUploadFormModal.FormFile in asp-for-->
+                    </dt>
+                    <dd>
+                        <input asp-for="FormFile" type="file">
+                    </dd>
+                </dl>
+
+            </div>
+            <div class="row">
+                <button class="col-5 btn-outline-success" type="submit">Upload</button>
+            </div>
+        </div>
+
     </form>
 </div>

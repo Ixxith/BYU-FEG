@@ -513,23 +513,33 @@
         <p>Category: @x.Category</p>
         <p>Description: @x.Description</p>
     }
-    <form asp-action="FileUploadForm" method="get">
-        <input type="hidden" name="byufegId" value="@Model.byufeg.ByufegId" />
-        <button type="submit" class="btn btn-primary">Click to Add File</button>
-    </form>
-</div>
+    @if (User.IsInRole("User"))
+    {
+        <form asp-action="FileUploadForm" method="get">
+            <input type="hidden" name="byufegId" value="@Model.byufeg.ByufegId" />
+            <button type="submit" class="btn btn-primary">Click to Add File</button>
+        </form>
+    }
+    </div>
+ 
 <div>
     <!--Button to update data, passes Byufegid through hidden field-->
-    <form asp-action="ByufegUpdate" method="post">
-        <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
-        <button class="btn-dark btn-sm pull-right text-light" type="submit">Update</button>
-    </form>
-    <!--Button to delete quote, passes quoteId through hidden field-->
-    <form asp-action="ByufegDelete" method="post">
-        <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
-        <button class="btn-dark btn-sm pull-right text-light" type="submit">Delete</button>
-    </form>
-    <form asp-action="Data" method="post">
-        <button class="btn-dark btn-sm pull-right text-light" type="submit">Back to List</button>
-    </form>
-</div>
+    @if (User.IsInRole("User"))
+    {
+        <form asp-action="ByufegUpdate" method="post">
+            <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
+            <button class="btn-dark btn-sm pull-right text-light" type="submit">Update</button>
+        </form>
+    }
+        <!--Button to delete quote, passes quoteId through hidden field-->
+        @if (User.IsInRole("Admin"))
+        {
+            <form asp-action="ByufegDelete" method="post">
+                <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
+                <button class="btn-dark btn-sm pull-right text-light" type="submit">Delete</button>
+            </form>|
+         }
+        <form asp-action="Data" method="post">
+            <button class="btn-dark btn-sm pull-right text-light" type="submit">Back to List</button>
+        </form>
+    </div>

@@ -142,6 +142,7 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         public IActionResult AddRecord()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
@@ -180,6 +181,7 @@ namespace BYU_FEG.Controllers
             });
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public IActionResult AddRecord(Byufeg byufeg)
         {
@@ -193,7 +195,7 @@ namespace BYU_FEG.Controllers
             else
                 return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpPost] //passes the move information into the update view
         public IActionResult ByufegUpdate(int ByufegId)
         {
@@ -203,6 +205,7 @@ namespace BYU_FEG.Controllers
             return View("AddRecord", byufeg);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult ByufegDelete(int ByufegId)
         {
@@ -212,6 +215,7 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data");
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost] //updates the form response and displays the updated movie list
         public IActionResult UpdateRecord(Byufeg byufeg)
         {
@@ -224,12 +228,14 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data", context.Byufeg);
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet]
         public IActionResult BurialForm()
         {
             return View();
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public IActionResult BurialForm(Burial burial)
         {
@@ -243,7 +249,7 @@ namespace BYU_FEG.Controllers
             else
                 return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpGet]
         public async Task<IActionResult> FileUploadForm(int byufegId)
         {
@@ -252,6 +258,7 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload, string attachmentCategory, string attachmentDescription, int byufegId)
         {
@@ -389,12 +396,6 @@ namespace BYU_FEG.Controllers
             //Response.Cookies.Append(".AspNetCore.CasLogin", principal.ToString(), option);
 
             return RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [HttpGet("access-denied")]

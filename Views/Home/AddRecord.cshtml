@@ -49,7 +49,7 @@
         <div class="tab-content">
 
             <!--Burial Information-->
-            <div id="burialInfo" class="container tab-pane active">
+            <div id="burialInfo" class="container tab-pane pb-3 active">
 
                 <br />
 
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="form-group col">
                             <label asp-for="BurialId">Burial Location</label>
-                            <select asp-for="BurialId" asp-items="ViewBag.Burials"></select>
+                            <select class="dropdown dropdown-item-text" asp-for="BurialId" asp-items="ViewBag.Burials"></select>
                             <span><!--asp-validation--></span>
                         </div>
 
@@ -130,7 +130,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label asp-for="HeadDirection">Head Direction</label>
-                                <select asp-for="HeadDirection">
+                                <select class="dropdown dropdown-item-text" asp-for="HeadDirection">
                                     <option value=""></option>
                                     <option value="East">East</option>
                                     <option value="West">West</option>
@@ -140,7 +140,7 @@
 
                             <div class="form-group">
                                 <label asp-for="PreservationIndex">Preservation Index</label>
-                                <select asp-for="PreservationIndex">
+                                <select class="dropdown dropdown-item-text" asp-for="PreservationIndex">
                                     <option value=""></option>
                                     <option value="I">I</option>
                                     <option value="II">II</option>
@@ -753,7 +753,7 @@
 
                     <div class="form-group">
                         <label asp-for="GenderGe">Gender (as determined by the Giles/Elliot Function)</label>
-                        <select asp-for="GenderGe">
+                        <select class="dropdown dropdown-item-text" asp-for="GenderGe">
                             <option value=""></option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -764,7 +764,7 @@
 
                     <div class="form-group">
                         <label asp-for="GenderBodyCol">Gender (as determined by body descriptions and measurements)</label>
-                        <select asp-for="GenderBodyCol">
+                        <select class="dropdown dropdown-item-text" asp-for="GenderBodyCol">
                             <option value=""></option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
