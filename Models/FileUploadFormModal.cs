@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Last updated: 4-13-2021
+//To upload files to S3
+
 namespace BYU_FEG.Models
 {
     public class FileUploadFormModal

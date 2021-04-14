@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+//Last updated: 4-13-2021
+//Model for the Byufeg table in the database. PK = ByufegId FK = BurialId
+
 namespace BYU_FEG.Models
 {
     public partial class Byufeg
@@ -38,7 +41,7 @@ namespace BYU_FEG.Models
         [Column("gender_GE")]
         [StringLength(20)]
         public string GenderGe { get; set; }
-        [Column("GE_function_total", TypeName = "numeric(8, 4)")] //CHANGE***************** 7
+        [Column("GE_function_total", TypeName = "numeric(8, 4)")]
         public decimal? GeFunctionTotal { get; set; }
         [Column("gender_body_col")]
         [StringLength(20)]
@@ -62,9 +65,9 @@ namespace BYU_FEG.Models
         public int? DorsalPitting { get; set; }
         [Column("foreman_magnum")]
         public int? ForemanMagnum { get; set; }
-        [Column("femur_head", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("femur_head", TypeName = "numeric(5, 2)")]  
         public decimal? FemurHead { get; set; }
-        [Column("humerus_head", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("humerus_head", TypeName = "numeric(5, 2)")] 
         public decimal? HumerusHead { get; set; }
         [Column("osteophytosis")]
         [StringLength(8)]
@@ -82,11 +85,11 @@ namespace BYU_FEG.Models
         public int? FemurDiameter { get; set; }
         [Column("humerus")]
         public int? Humerus { get; set; }
-        [Column("femur_length", TypeName = "numeric(4, 1)")]  //CHANGE***************** 3
+        [Column("femur_length", TypeName = "numeric(4, 1)")] 
         public decimal? FemurLength { get; set; }
-        [Column("humerus_length", TypeName = "numeric(4, 1)")]  //CHANGE***************** 3
+        [Column("humerus_length", TypeName = "numeric(4, 1)")]  
         public decimal? HumerusLength { get; set; }
-        [Column("tibia_length", TypeName = "numeric(4, 1)")]  //CHANGE***************** 3
+        [Column("tibia_length", TypeName = "numeric(4, 1)")]
         public decimal? TibiaLength { get; set; }
         [Column("robust")]
         public int? Robust { get; set; }
@@ -105,23 +108,23 @@ namespace BYU_FEG.Models
         [Column("cranial_suture")]
         [StringLength(13)]
         public string CranialSuture { get; set; }
-        [Column("maximum_cranial_length", TypeName = "numeric(6, 2)")]  //CHANGE***************** 5
+        [Column("maximum_cranial_length", TypeName = "numeric(6, 2)")]
         public decimal? MaximumCranialLength { get; set; }
-        [Column("maximum_cranial_breadth", TypeName = "numeric(6, 2)")]  //CHANGE***************** 5
+        [Column("maximum_cranial_breadth", TypeName = "numeric(6, 2)")]
         public decimal? MaximumCranialBreadth { get; set; }
-        [Column("basion_bregma_height", TypeName = "numeric(6, 2)")]  //CHANGE***************** 5
+        [Column("basion_bregma_height", TypeName = "numeric(6, 2)")]
         public decimal? BasionBregmaHeight { get; set; }
-        [Column("basion_nasion", TypeName = "numeric(6, 2)")]  //CHANGE***************** 5
+        [Column("basion_nasion", TypeName = "numeric(6, 2)")]
         public decimal? BasionNasion { get; set; }
-        [Column("basion_prosthion_length", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("basion_prosthion_length", TypeName = "numeric(5, 2)")]
         public decimal? BasionProsthionLength { get; set; }
-        [Column("bizygomatic_diameter", TypeName = "numeric(6, 2)")]  //CHANGE*****************  5
+        [Column("bizygomatic_diameter", TypeName = "numeric(6, 2)")] 
         public decimal? BizygomaticDiameter { get; set; }
-        [Column("nasion_prosthion", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("nasion_prosthion", TypeName = "numeric(5, 2)")]
         public decimal? NasionProsthion { get; set; }
-        [Column("maximum_nasal_breadth", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("maximum_nasal_breadth", TypeName = "numeric(5, 2)")] 
         public decimal? MaximumNasalBreadth { get; set; }
-        [Column("interorbital_breadth", TypeName = "numeric(5, 2)")]  //CHANGE***************** 4
+        [Column("interorbital_breadth", TypeName = "numeric(5, 2)")] 
         public decimal? InterorbitalBreadth { get; set; }
         [Column("artifacts_description")]
         [StringLength(200)]

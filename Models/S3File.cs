@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Amazon.Runtime;
 
+//Last updated: 4-13-2021
+//Model for S3 file upload
+
 namespace BYU_FEG.Models
 {
     public class S3File
