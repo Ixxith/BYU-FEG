@@ -525,6 +525,7 @@
         <input type="hidden" name="ByufegId" value="@Model.byufeg.ByufegId" />
         <button class="btn-dark btn-sm pull-right text-light" type="submit">Delete</button>
     </form>|
-
-    <button asp-action="Data"class="btn-dark btn-sm pull-right text-light" type="submit">Back to List</button>
+    <form asp-action="Data" method="post">
+        <button class="btn-dark btn-sm pull-right text-light" type="submit">Back to List</button>
+    </form>
 </div>
