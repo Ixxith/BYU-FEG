@@ -60,4 +60,3 @@ function yesnoCheckFile() {
         document.getElementById('ifYesFile').style.display = 'none';
     }
 }
-
