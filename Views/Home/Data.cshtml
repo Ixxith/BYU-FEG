@@ -43,7 +43,7 @@
 
                                 <td>@if (x.BurialId != null) {@x.Burial.BurialConcat} </td>
                                 <td>@x.BurialDepth </td>
-                                <td>@x.BurialSituation </td>
+                                <td><button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="@($"#situation{x.ByufegId}")" aria-expanded="false" aria-controls="@($"situation{x.ByufegId}")">Expand</button><div class="collapse" id="@($"situation{x.ByufegId}")">@x.BurialSituation</div></td>
                                 <td>@x.LengthOfRemains</td>
                                 <td>@x.GenderBodyCol</td>
                                 <td>@x.HairColor</td>
