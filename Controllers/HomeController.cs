@@ -229,6 +229,7 @@ namespace BYU_FEG.Controllers
         public IActionResult ByufegDelete(int ByufegId)
         {
             var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
+            context.Attachment.RemoveRange(context.Attachment.Where(a => a.ByufegId == ByufegId));
             context.Byufeg.Remove(byufeg);
             context.SaveChanges();
             return RedirectToAction("Data");
