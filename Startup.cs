@@ -17,7 +17,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-//using static BYU_FEG.Models.Helper;
+
+//Last updated: 4-13-2021
 
 namespace BYU_FEG
 {
@@ -46,6 +47,7 @@ namespace BYU_FEG
                 options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);
             });
 
+            //Allow CAS authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o =>
                 {

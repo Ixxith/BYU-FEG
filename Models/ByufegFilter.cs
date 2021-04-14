@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Last updated: 4-13-2021
+//Model to filter the data entries on the data view
+
 namespace BYU_FEG.Models
 {
     public class ByufegFilter

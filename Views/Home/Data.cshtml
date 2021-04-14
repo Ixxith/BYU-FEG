@@ -34,34 +34,37 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var x in Model.bodies)
-                    {
-                    <tr>
-                        <th scope="row">@x.ByufegId</th>
-                        <td>@x.Burial</td>
-                        <td>@x.BurialDepth </td>
-                        <td>@x.BurialSituation </td>
-                        <td>@x.LengthOfRemains</td>
-                        <td>@x.GenderBodyCol</td>
-                        <td>@x.HairColor</td>
-                        <td>@(x.HairTaken == "True" || x.ToothTaken == "True" || x.BoneTaken == "True" || x.TextileTaken == "True" || x.SoftTissueTaken == "True" ? "Yes" : "No") </td>
-                        <td>@(x.ArtifactFound == "True" ? "Yes" : "No") </td>
-                        <td>@x.HeadDirection</td>
-                        <td>@x.EstimateAge</td>
-                        <td>@x.EstimateLivingStature </td>
-                        <td>@x.DateFound</td>
-                        <td></td>
-                        <td>
-                            <!--Button to see details of an item, passes ByufegId through hidden field-->
-                            <form asp-action="ByufegDetails" method="post">
-                                <input type="hidden" name="ByufegId" value="@x.ByufegId" />
-                                <button class="btn-dark btn-sm pull-right text-light" type="submit">Details</button>
-                            </form>
-                        </td>
-                    </tr>
-                    }
+                    
 
-                </tbody>
+                        @foreach (var x in Model.bodies)
+                        {
+                            <tr>
+                                <th scope="row">@x.ByufegId</th>
+
+                                <td>@if (x.BurialId != null) {@x.Burial.BurialConcat} </td>
+                                <td>@x.BurialDepth </td>
+                                <td>@x.BurialSituation </td>
+                                <td>@x.LengthOfRemains</td>
+                                <td>@x.GenderBodyCol</td>
+                                <td>@x.HairColor</td>
+                                <td>@(x.HairTaken == "True" || x.ToothTaken == "True" || x.BoneTaken == "True" || x.TextileTaken == "True" || x.SoftTissueTaken == "True" ? "Yes" : "No") </td>
+                                <td>@(x.ArtifactFound == "True" ? "Yes" : "No") </td>
+                                <td>@x.HeadDirection</td>
+                                <td>@x.EstimateAge</td>
+                                <td>@x.EstimateLivingStature </td>
+                                <td>@x.DateFound</td>
+                                <td></td>
+                                <td>
+                                    <!--Button to see details of an item, passes ByufegId through hidden field-->
+                                    <form asp-action="ByufegDetails" method="post">
+                                        <input type="hidden" name="ByufegId" value="@x.ByufegId" />
+                                        <button class="btn-dark btn-sm pull-right text-light" type="submit">Details</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
             </table>
         </div>
 
