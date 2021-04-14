@@ -10,8 +10,10 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BYU_FEG.Controllers
@@ -28,6 +30,8 @@ namespace BYU_FEG.Controllers
         //    _logger = logger;
         //}
 
+
+
         private BYUFEGContext context { get; set; }
 
         public void updateViewbag()
@@ -39,6 +43,13 @@ namespace BYU_FEG.Controllers
             ViewBag.HairColors = new SelectList(haircolor);
             var hd = context.Byufeg.Select(b => b.HeadDirection).Distinct();
             ViewBag.HeadDirections = new SelectList(hd);
+        }
+
+        public UserPermission findUserPermissions(string username)
+        {
+            
+            UserPermission userPermission = context.UserPermission.FirstOrDefault(u => u.UserName == username);
+            return userPermission;
         }
 
         public HomeController(BYUFEGContext con, ILogger<HomeController> logger, IConfiguration configuration)
@@ -219,12 +230,14 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult ManageRoles()
         {
             IEnumerable<UserPermission> userPermissions = context.UserPermission.OrderBy(u => u.Id);
             return View(userPermissions);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult RemoveUserPermission(int Id)
         {
             // Use the Id to remove the userPermission from the database and then save.
@@ -234,7 +247,8 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
+        [Authorize(Roles = "Admin")]
         public IActionResult UserPermissionEdit(int Id)
         {
             UserPermission up = context.UserPermission.FirstOrDefault(u => u.Id == Id);
@@ -242,6 +256,7 @@ namespace BYU_FEG.Controllers
             
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult UserPermissionNew()
         {
@@ -249,6 +264,7 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult UserPermissionNew(UserPermission userPermission)
         {
@@ -264,11 +280,55 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpPost]
-        public IActionResult EmulateUser(string netid)
+        public async Task<IActionResult> EmulateUserAsync(string username)
         {
+
+            List<String> roles = new List<string>();
+            UserPermission userPermission = findUserPermissions(username);
+            ClaimsPrincipal principal = new ClaimsPrincipal();
+            if (userPermission!=null) { 
+            if (userPermission.IsResearcher)
+            {
+                roles.Add("User");
+            };
+            if (userPermission.IsAdmin)
+            {
+                roles.Add("Admin");
+            }
+            };
+
+            
+            // Hard coded roles.
+            // string[] roles = new[]{ "User", "Admin" };
+
+            // `AddClaim` is not available directly from `context.Principal.Identity`.
+            // We can add a new empty identity with the roles we want to the principal. 
+            var identity = new ClaimsIdentity("Custom");
+
+            foreach (var role in roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+
+            identity.AddClaim(new Claim(JwtRegisteredClaimNames.UniqueName, username));
+            
+            principal.AddIdentity(identity);
+            
             
 
-            return View();
+            await AuthenticationHttpContextExtensions.SignInAsync(this.HttpContext, "Cookies", principal);
+
+            
+
+            // CookieOptions option = new CookieOptions();
+
+
+            //  option.Expires = DateTime.Now.AddMinutes(1000);
+
+
+            //Response.Cookies.Append(".AspNetCore.CasLogin", principal.ToString(), option);
+
+            return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin")]
