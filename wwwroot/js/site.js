@@ -1,7 +1,4 @@
-﻿const { ScrollSpy } = require("bootstrap");
-
-
-//Code for Artifact Found Dynamic Input Hidden Fields
+﻿//Code for Artifact Found Dynamic Input Hidden Fields
 function yesnoCheck() {
     if (document.getElementById('artifactFoundY').checked) {
         document.getElementById('ifYes').style.display = 'block';
