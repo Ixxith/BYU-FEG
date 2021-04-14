@@ -14,7 +14,7 @@ namespace BYU_FEG.Models
     public class S3File
     {
         private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
-        private static IAmazonS3 s3Client;
+        //private static IAmazonS3 s3Client;
 
         public static async Task UploadImage(IFormFile file)
         {

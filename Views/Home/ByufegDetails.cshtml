@@ -509,6 +509,11 @@
             @Html.DisplayFor(model => model.Burial.BurialId)
         </dd>*@
     </dl>
+    <br />
+    @foreach (var x in Model.attachment)
+    {
+        <img src="@x.AttachmentUrl" height="100px" />
+    }
     <form asp-action="FileUploadForm" method="get">
         <input type="hidden" name="byufegId" value="@Model.byufeg.ByufegId" />
         <button type="submit" class="btn btn-primary">Click to Add File</button>
