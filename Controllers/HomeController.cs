@@ -150,6 +150,7 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         //Get AddRecord view to allow user to add burial record
         public IActionResult AddRecord()
         {
@@ -176,6 +177,7 @@ namespace BYU_FEG.Controllers
             });
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         //Add record to byufeg database, then redirect to FileUpload view
         public IActionResult AddRecord(Byufeg byufeg)
@@ -190,9 +192,8 @@ namespace BYU_FEG.Controllers
             else
                 return View();
         }
-
-        [HttpPost]
-        //When update button clicked, take user to Add record page
+        [Authorize(Roles = "User")]
+        [HttpPost] //When update button clicked, take user to Add record page
         public IActionResult ByufegUpdate(int ByufegId)
         {
             //Set ViewBag.Update to true to pre-populate form and change
@@ -203,6 +204,7 @@ namespace BYU_FEG.Controllers
             return View("AddRecord", byufeg);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         //Find appropriate record by ByufegId and delete
         public IActionResult ByufegDelete(int ByufegId)
@@ -213,8 +215,8 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data");
         }
 
-        [HttpPost]
-        //Update byufeg Record
+        [Authorize(Roles = "User")]
+        [HttpPost] //Update byufeg Record
         public IActionResult UpdateRecord(Byufeg byufeg)
         {
             if (ModelState.IsValid)
@@ -226,6 +228,7 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data", context.Byufeg);
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet]
         //Load BurialForm view
         public IActionResult BurialForm()
@@ -233,6 +236,7 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         //Upload BurialForm information
         public IActionResult BurialForm(Burial burial)
@@ -247,7 +251,7 @@ namespace BYU_FEG.Controllers
             else
                 return View();
         }
-
+        [Authorize(Roles = "User")]
         [HttpGet]
         //Upload file and attach to correct byufegId
         public async Task<IActionResult> FileUploadForm(int byufegId)
@@ -257,6 +261,7 @@ namespace BYU_FEG.Controllers
             return View();
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         //Using FileUploadFormModal, store file selected by user
         //and generate attachment url. Upload to S3 and save necessary
@@ -396,12 +401,6 @@ namespace BYU_FEG.Controllers
             //Response.Cookies.Append(".AspNetCore.CasLogin", principal.ToString(), option);
 
             return RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [HttpGet("access-denied")]
