@@ -510,8 +510,8 @@
     @foreach (var x in Model.attachment)
     {
         <img src="@x.AttachmentUrl" height="100px" />
-        <p>@x.Category</p>
-        <p>@x.Description</p>
+        <p>Category: @x.Category</p>
+        <p>Description: @x.Description</p>
     }
     @if (User.IsInRole("User"))
     {

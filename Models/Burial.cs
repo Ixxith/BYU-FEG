@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+//Last updated: 4-13-2021
+//Model for the burial table in the database. PK = BurialId
+
 namespace BYU_FEG.Models
 {
     public partial class Burial

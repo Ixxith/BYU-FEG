@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+//Last updated: 4-13-2021
+//Context file for our database
+
 namespace BYU_FEG.Models
 {
     public partial class BYUFEGContext : DbContext
@@ -12,24 +15,21 @@ namespace BYU_FEG.Models
         {
         }
 
-        public BYUFEGContext() //add this change
+        public BYUFEGContext() //Added for RDS
         {
 
         }
 
-        public static BYUFEGContext Create() //Add this change
+        public static BYUFEGContext Create() //Added for RDS
         {
             return new BYUFEGContext();
         }
-
-        //public virtual DbSet<Activity> Activity { get; set; }
-        //public virtual DbSet<ActivityToPerson> ActivityToPerson { get; set; }
+        //tables in database
         public virtual DbSet<Attachment> Attachment { get; set; }
         public virtual DbSet<Burial> Burial { get; set; }
         public virtual DbSet<Byufeg> Byufeg { get; set; }
 
         public virtual DbSet<UserPermission> UserPermission { get; set; }
-        //public virtual DbSet<Person> Person { get; set; }
 
 
 
@@ -37,37 +37,17 @@ namespace BYU_FEG.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+                //conection string
                 optionsBuilder.UseSqlServer("Data Source=(local);initial catalog=BYUFEG; trusted_connection=yes;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Activity>(entity =>
-            //{
-            //    entity.Property(e => e.ActivityId).ValueGeneratedNever();
-            //});
-
-            //modelBuilder.Entity<ActivityToPerson>(entity =>
-            //{
-            //    entity.Property(e => e.ActivityToPersonId).ValueGeneratedNever();
-
-            //    entity.HasOne(d => d.Activity)
-            //        .WithMany(p => p.ActivityToPerson)
-            //        .HasForeignKey(d => d.ActivityId)
-            //        .HasConstraintName("FK__ActivityT__Activ__534D60F1");
-
-            //    entity.HasOne(d => d.Person)
-            //        .WithMany(p => p.ActivityToPerson)
-            //        .HasForeignKey(d => d.PersonId)
-            //        .HasConstraintName("FK__ActivityT__Perso__5441852A");
-            //});
 
             modelBuilder.Entity<Attachment>(entity =>
             {
-                //entity.Property(e => e.AttachmentId).ValueGeneratedNever();
-
+                //foreign key
                 entity.HasOne(d => d.Byufeg)
                     .WithMany(p => p.Attachment)
                     .HasForeignKey(d => d.ByufegId)
@@ -76,25 +56,16 @@ namespace BYU_FEG.Models
 
             modelBuilder.Entity<Burial>(entity =>
             {
-                //entity.Property(e => e.BurialId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Byufeg>(entity =>
             {
-                //entity.Property(e => e.ByufegId).ValueGeneratedNever();
-
+                //foreign key
                 entity.HasOne(d => d.Burial)
                     .WithMany(p => p.Byufeg)
                     .HasForeignKey(d => d.BurialId)
                     .HasConstraintName("FK__Byufeg__Burial_I__571DF1D5");
             });
-
-            //modelBuilder.Entity<Person>(entity =>
-            //{
-            //    entity.Property(e => e.PersonId).ValueGeneratedNever();
-            //});
-
-            //OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

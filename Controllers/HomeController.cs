@@ -20,6 +20,7 @@ namespace BYU_FEG.Controllers
 {
     public class HomeController : Controller
     {
+        //Set pagesize to 10 for filtering
         public int PageSize = 10;
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
@@ -31,9 +32,10 @@ namespace BYU_FEG.Controllers
         //}
 
 
-
+        //Create ByuFegContext variable with get and set properties
         private BYUFEGContext context { get; set; }
 
+        //initialize all ViewBag variables
         public void updateViewbag()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text = $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}", Value = b.BurialId.ToString() });
@@ -45,6 +47,7 @@ namespace BYU_FEG.Controllers
             ViewBag.HeadDirections = new SelectList(hd);
         }
 
+        //For security purposes, determine the user's permissions
         public UserPermission findUserPermissions(string username)
         {
             
@@ -59,6 +62,7 @@ namespace BYU_FEG.Controllers
             _logger = logger;
         }
 
+        //Load home page with Byufeg data from context
         public IActionResult Index()
         {
             return View(context.Byufeg);
@@ -69,13 +73,16 @@ namespace BYU_FEG.Controllers
         //    return View(context.Byufeg);
         //}
 
+
         [HttpGet]
+        //Data page loads all Byufeg data from context, going to page 1 by default
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
 
             IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId);
 
+            //Load Data page with ResultList, creating PagingInfo for the results
             return View(
                  new ResultListViewModel
                  {
@@ -99,6 +106,7 @@ namespace BYU_FEG.Controllers
         }
 
         [HttpPost]
+        //Post method for Data view, used in filtering (ByufegFilter parameter)
         public IActionResult Data(ByufegFilter bf, int page = 1)
         {
             updateViewbag();
@@ -143,36 +151,24 @@ namespace BYU_FEG.Controllers
 
         [HttpGet]
         [Authorize(Roles = "User")]
+        //Get AddRecord view to allow user to add burial record
         public IActionResult AddRecord()
         {
+            //Load ViewBag with burial locations to populate dropdown options and set Update value
+            //to false, indicating it is a new record, not a record being updated
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
             ViewBag.Update = false;
 
             return View();
         }
 
-        [HttpPost] //details view
+        [HttpPost]
+        //Details view, allows user to view more details about a particular record
         public IActionResult ByufegDetails(int ByufegId)
         {
-            //FIRST TRY
-            //Byufeg byufeg = context.Byufeg.Find(ByufegId);
-            //return View("Details", byufeg);
-
-            //SECOND TRY
-            //var Byufeg = new Byufeg() { };
-            //var Burial = new Burial() { };
-            //var Attachment = new Attachment() { };
-            //var DetailsViewModel = new DetailsViewModel
-            //{
-            //    byufeg = Byufeg,
-            //    burial = Burial,
-            //    attachment = Attachment
-            //};
-
-            //return View("Details", DetailsViewModel);
-
-            //THIRD TRY
+            
             var byufeg = context.Byufeg.FirstOrDefault(x => x.ByufegId == ByufegId);
+            //Pass in DetailsViewModel with information from byufeg, attachment, and burial tables
             return View(new DetailsViewModel
             {
                 byufeg = byufeg,
@@ -183,6 +179,7 @@ namespace BYU_FEG.Controllers
 
         [Authorize(Roles = "User")]
         [HttpPost]
+        //Add record to byufeg database, then redirect to FileUpload view
         public IActionResult AddRecord(Byufeg byufeg)
         {
             if (ModelState.IsValid)
@@ -196,9 +193,11 @@ namespace BYU_FEG.Controllers
                 return View();
         }
         [Authorize(Roles = "User")]
-        [HttpPost] //passes the move information into the update view
+        [HttpPost] //When update button clicked, take user to Add record page
         public IActionResult ByufegUpdate(int ByufegId)
         {
+            //Set ViewBag.Update to true to pre-populate form and change
+            //method in AddRecord view
             ViewBag.Update = true;
             var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text = $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}", Value = b.BurialId.ToString() });
@@ -207,6 +206,7 @@ namespace BYU_FEG.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
+        //Find appropriate record by ByufegId and delete
         public IActionResult ByufegDelete(int ByufegId)
         {
             var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
@@ -216,7 +216,7 @@ namespace BYU_FEG.Controllers
         }
 
         [Authorize(Roles = "User")]
-        [HttpPost] //updates the form response and displays the updated movie list
+        [HttpPost] //Update byufeg Record
         public IActionResult UpdateRecord(Byufeg byufeg)
         {
             if (ModelState.IsValid)
@@ -230,6 +230,7 @@ namespace BYU_FEG.Controllers
 
         [Authorize(Roles = "User")]
         [HttpGet]
+        //Load BurialForm view
         public IActionResult BurialForm()
         {
             return View();
@@ -237,6 +238,7 @@ namespace BYU_FEG.Controllers
 
         [Authorize(Roles = "User")]
         [HttpPost]
+        //Upload BurialForm information
         public IActionResult BurialForm(Burial burial)
         {
             if (ModelState.IsValid)
@@ -260,22 +262,23 @@ namespace BYU_FEG.Controllers
 
         [Authorize(Roles = "User")]
         [HttpPost]
+        //Using FileUploadFormModal, store file selected by user
+        //and generate attachment url. Upload to S3 and save necessary
+        //information to Attachment table
         public async Task<IActionResult> FileUploadForm(FileUploadFormModal FileUpload, string attachmentCategory, string attachmentDescription, int byufegId)
         {
-            /*using (var stream = FileUpload.FormFile.OpenReadStream())
-            {
-                var file = new FormFile(stream, 0, stream.Length, null, FileUpload.FormFile.FileName);
-                await S3File.UploadImage();
-            }*/
-
+            //Copy file into memory stream to obtain length
             using (var memoryStream = new MemoryStream())
             {
                 await FileUpload.FormFile.CopyToAsync(memoryStream);
 
-                // Upload the file if less than 2 MB
-                if (memoryStream.Length < 2097152)
+                // Upload the file if less than 15 MB
+                if (memoryStream.Length < 15097152)
                 {
+                    //Call UploadImage method from S3File class to upload to S3
                     await S3File.UploadImage(FileUpload.FormFile);
+
+                    //Load pertinent data to Attachment table
                     var name = FileUpload.FormFile.FileName.Replace(" ", "");
                     context.Attachment.Add(new Attachment()
                     {
@@ -286,7 +289,6 @@ namespace BYU_FEG.Controllers
                     });
 
                     context.SaveChanges();
-                    //await S3File.UploadImage(memoryStream); old method
                 }
                 else
                 {
@@ -297,6 +299,7 @@ namespace BYU_FEG.Controllers
             return RedirectToAction("Data");
         }
 
+        //Allow admins to access ManageRoles view
         [Authorize(Roles = "Admin")]
         public IActionResult ManageRoles()
         {
@@ -304,6 +307,7 @@ namespace BYU_FEG.Controllers
             return View(userPermissions);
         }
 
+        //Allow admins to edit, remove and create new user permissions
         [Authorize(Roles = "Admin")]
         public IActionResult RemoveUserPermission(int Id)
         {
@@ -313,7 +317,6 @@ namespace BYU_FEG.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
         [Authorize(Roles = "Admin")]
         public IActionResult UserPermissionEdit(int Id)
@@ -346,6 +349,7 @@ namespace BYU_FEG.Controllers
            return View();
         }
 
+        //Allow for user emulation
         [HttpPost]
         public async Task<IActionResult> EmulateUserAsync(string username)
         {
