@@ -8,7 +8,18 @@
 
 @model BYU_FEG.Models.Byufeg
 
-<form asp-action="AddRecord" method="post">
+@{string update = ""; }
+
+@if (ViewBag.Update == false) { update = "AddRecord"; } else { update = "UpdateRecord"; }
+
+<form asp-action="@update" method="post">
+
+
+
+    <!--Hidden field that can get passed to the controller to update right record-->
+    @if (ViewBag.Update == false) { }
+    else
+    {<input type="hidden" name="ByufegId" value="@Model.ByufegId" />}
 
     <!--Toggleable Tabs for Information Input-->
     <div class="container">
@@ -374,9 +385,9 @@
 
                 <div class="container">
                     <div class="row justify-content-center pb-2">
-                    <button class="btn btn-outline-primary col-4" type="button" data-toggle="collapse" data-target="#bonePelvic" aria-expanded="false" aria-controls="bonePelvic">
-                        Pelvis
-                    </button>
+                        <button class="btn btn-outline-primary col-4" type="button" data-toggle="collapse" data-target="#bonePelvic" aria-expanded="false" aria-controls="bonePelvic">
+                            Pelvis
+                        </button>
                     </div>
                 </div>
 
@@ -817,13 +828,17 @@
                 <div class="form-group">
                     <label asp-for="Rack">Rack</label>
                     <input asp-for="Rack" />
-                    <span>--><!--asp-validation--><!--</span>
-                </div>
+                    <span>-->
+            <!--asp-validation-->
+            <!--</span>
+            </div>
 
-                <div class="form-group">
-                    <label asp-for="Shelf">Shelf</label>
-                    <input asp-for="Shelf" />
-                    <span>--><!--asp-validation--><!--</span>
+            <div class="form-group">
+                <label asp-for="Shelf">Shelf</label>
+                <input asp-for="Shelf" />
+                <span>-->
+            <!--asp-validation-->
+            <!--</span>
                 </div>
 
             </div>-->
@@ -831,7 +846,7 @@
 
     </div>
 
-    
+
 
 </form>
 
