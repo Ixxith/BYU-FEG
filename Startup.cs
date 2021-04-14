@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -62,9 +63,13 @@ namespace BYU_FEG
                         // Add user roles to the existing identity.                          
                         OnSigningIn = context =>
                         {
-                            // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
                             var username = context.Principal.Identity.Name;
-                           
+                            // Use `GetRequiredService` if you have a service that is using DI or an EF Context.
+                            if (context.Principal.Claims.Any(a => a.Type == JwtRegisteredClaimNames.UniqueName))
+                            {
+                                username = context.Principal.Claims.First(a => a.Type == JwtRegisteredClaimNames.UniqueName).Value; 
+                            }
+                            
                             //var userSvc = context.HttpContext.RequestServices.GetRequiredService<UserService>();
                             // var roles = userSvc.GetRoles(username);
                             // Using the username, we will check the database for if that username exists.
@@ -72,14 +77,16 @@ namespace BYU_FEG
                             List<String> roles = new List<string>();
                             UserPermission userPermission = findUserPermissions(services, username);
 
-
-                            if (userPermission.IsResearcher)
+                            if (userPermission != null)
                             {
-                                roles.Add("User");
-                            };
-                            if (userPermission.IsAdmin)
-                            {
-                                roles.Add("Admin");
+                                if (userPermission.IsResearcher)
+                                {
+                                    roles.Add("User");
+                                };
+                                if (userPermission.IsAdmin)
+                                {
+                                    roles.Add("Admin");
+                                }
                             };
                             // Hard coded roles.
                             // string[] roles = new[]{ "User", "Admin" };
