@@ -122,7 +122,18 @@ namespace BYU_FEG.Controllers
         //Post method for Data view, used in filtering (ByufegFilter parameter)
         public IActionResult Data(ByufegFilter bf, int page = 1)
         {
+
+            
+
             updateViewbag();
+
+            IEnumerable<Burial> burials = context.Burial.OrderBy(b => b.BurialId);
+
+            foreach (Burial b in burials)
+            {
+                // iterate through them allll
+            }
+
             IEnumerable<Byufeg> objs = context.Byufeg.Where(
                 b => (bf.burial == null || b.BurialId == bf.burial) &&
                      (bf.burialdepth == null || b.BurialDepth == bf.burialdepth) &&
@@ -140,16 +151,15 @@ namespace BYU_FEG.Controllers
 
                 );
 
-            foreach (Byufeg b in objs)
-            {
-                b.Burial = context.Burial.FirstOrDefault(bu => bu.BurialId == b.BurialId);
-            }
+            
 
             ViewBag.Filter = bf;
             return View(
               new ResultListViewModel
               {
+                  burials = burials,
                   bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
+
 
                   PagingInfo = new PagingInfo
                   {
