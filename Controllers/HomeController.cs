@@ -80,12 +80,25 @@ namespace BYU_FEG.Controllers
         {
             updateViewbag();
 
+
+
+            IEnumerable<Burial> burials = context.Burial.OrderBy(b => b.BurialId);
+
+            foreach (Burial b in burials)
+            {
+                // iterate through them allll
+            }
+
             IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId);
+            
+
+            
 
             //Load Data page with ResultList, creating PagingInfo for the results
             return View(
                  new ResultListViewModel
                  {
+                     burials = burials,
                      bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
                      PagingInfo = new PagingInfo
@@ -126,6 +139,12 @@ namespace BYU_FEG.Controllers
                      (b.DateFound == null || b.DateFound <= bf.datefoundend)
 
                 );
+
+            foreach (Byufeg b in objs)
+            {
+                b.Burial = context.Burial.FirstOrDefault(bu => bu.BurialId == b.BurialId);
+            }
+
             ViewBag.Filter = bf;
             return View(
               new ResultListViewModel

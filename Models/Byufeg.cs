@@ -219,7 +219,7 @@ namespace BYU_FEG.Models
 
         [ForeignKey(nameof(BurialId))]
         [InverseProperty("Byufeg")]
-        public virtual Burial Burial { get; set; }
+        public Burial Burial { get; set; }
         [InverseProperty("Byufeg")]
         public virtual ICollection<Attachment> Attachment { get; set; }
     }
