@@ -21,7 +21,7 @@ namespace BYU_FEG.Controllers
     public class HomeController : Controller
     {
         //Set pagesize to 10 for filtering
-        public int PageSize = 10;
+        public int PageSize = 20;
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
 
