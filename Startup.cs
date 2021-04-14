@@ -46,6 +46,7 @@ namespace BYU_FEG
                 options.UseSqlServer(Configuration["ConnectionStrings:BYUFEGConnection"]);
             });
 
+            //Allow CAS authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o =>
                 {
