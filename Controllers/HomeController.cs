@@ -73,29 +73,29 @@ namespace BYU_FEG.Controllers
         public IActionResult Data(int page = 1)
         {
             updateViewbag();
-            
+
             IEnumerable<Byufeg> objs = context.Byufeg.OrderBy(b => b.ByufegId);
 
-             return View(
-                  new ResultListViewModel
-                  {
-                      bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
+            return View(
+                 new ResultListViewModel
+                 {
+                     bodies = objs.Skip((page - 1) * PageSize).Take(PageSize),
 
-                      PagingInfo = new PagingInfo
-                      {
-                          CurrentPage = page,
-                          ItemsPerPage = PageSize,
-                          TotalNumItems = objs.Count(),
-                          
-                      },
+                     PagingInfo = new PagingInfo
+                     {
+                         CurrentPage = page,
+                         ItemsPerPage = PageSize,
+                         TotalNumItems = objs.Count(),
 
-                      
-
-                  }
+                     },
 
 
 
-                );
+                 }
+
+
+
+               );
         }
 
         [HttpPost]
@@ -109,7 +109,7 @@ namespace BYU_FEG.Controllers
                      (bf.lengthofremains == null || b.LengthOfRemains == bf.lengthofremains) &&
                      (string.IsNullOrEmpty(bf.gender) || b.GenderBodyCol == bf.gender) &&
                      (string.IsNullOrEmpty(bf.haircolor) || b.HairColor == bf.haircolor) &&
-                     (string.IsNullOrEmpty(bf.itemtaken) || ((bf.itemtaken=="False" && b.HairTaken=="False" && b.ToothTaken == "False" && b.BoneTaken == "False" && b.TextileTaken == "False" && b.SoftTissueTaken == "False") || (bf.itemtaken == "True" && (b.HairTaken == "True" || b.ToothTaken == "True" || b.BoneTaken == "True" || b.TextileTaken == "True" || b.SoftTissueTaken == "True")))) &&
+                     (string.IsNullOrEmpty(bf.itemtaken) || ((bf.itemtaken == "False" && b.HairTaken == "False" && b.ToothTaken == "False" && b.BoneTaken == "False" && b.TextileTaken == "False" && b.SoftTissueTaken == "False") || (bf.itemtaken == "True" && (b.HairTaken == "True" || b.ToothTaken == "True" || b.BoneTaken == "True" || b.TextileTaken == "True" || b.SoftTissueTaken == "True")))) &&
                      (string.IsNullOrEmpty(bf.hasartifact) || b.ArtifactFound == bf.hasartifact) &&
                      (string.IsNullOrEmpty(bf.headdirection) || b.HeadDirection == bf.headdirection) &&
                      (bf.estimatedage == null || b.EstimateAge == bf.estimatedage) &&
@@ -129,7 +129,7 @@ namespace BYU_FEG.Controllers
                       CurrentPage = page,
                       ItemsPerPage = PageSize,
                       TotalNumItems = objs.Count(),
-                      filter =bf
+                      filter = bf
                   },
 
 
@@ -145,6 +145,7 @@ namespace BYU_FEG.Controllers
         public IActionResult AddRecord()
         {
             ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text= $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}",Value=b.BurialId.ToString() });
+            ViewBag.Update = false;
 
             return View();
         }
@@ -152,6 +153,24 @@ namespace BYU_FEG.Controllers
         [HttpPost] //details view
         public IActionResult ByufegDetails(int ByufegId)
         {
+            //FIRST TRY
+            //Byufeg byufeg = context.Byufeg.Find(ByufegId);
+            //return View("Details", byufeg);
+
+            //SECOND TRY
+            //var Byufeg = new Byufeg() { };
+            //var Burial = new Burial() { };
+            //var Attachment = new Attachment() { };
+            //var DetailsViewModel = new DetailsViewModel
+            //{
+            //    byufeg = Byufeg,
+            //    burial = Burial,
+            //    attachment = Attachment
+            //};
+
+            //return View("Details", DetailsViewModel);
+
+            //THIRD TRY
             var byufeg = context.Byufeg.FirstOrDefault(x => x.ByufegId == ByufegId);
             return View(new DetailsViewModel
             {
@@ -159,15 +178,6 @@ namespace BYU_FEG.Controllers
                 attachment = context.Attachment.Where(x => x.ByufegId == ByufegId),
                 burial = context.Burial.FirstOrDefault(x => x.BurialId == byufeg.BurialId)
             });
-        }
-
-        [HttpPost]
-        public IActionResult ByufegDelete(int ByufegId)
-        {
-            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
-            context.Byufeg.Remove(byufeg);
-            context.SaveChanges();
-            return View("Data");
         }
 
         [HttpPost]
@@ -184,8 +194,58 @@ namespace BYU_FEG.Controllers
                 return View();
         }
 
+        [HttpPost] //passes the move information into the update view
+        public IActionResult ByufegUpdate(int ByufegId)
+        {
+            ViewBag.Update = true;
+            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
+            ViewBag.Burials = context.Burial.Select(b => new SelectListItem() { Text = $"{b.BurialLocationNs} {b.LowPairNs}/{b.HighPairNs} {b.BurialLocationEw} {b.LowPairEw}/{b.HighPairEw} {b.BurialSubplot}", Value = b.BurialId.ToString() });
+            return View("AddRecord", byufeg);
+        }
+
+        [HttpPost]
+        public IActionResult ByufegDelete(int ByufegId)
+        {
+            var byufeg = context.Byufeg.FirstOrDefault(m => m.ByufegId == ByufegId);
+            context.Byufeg.Remove(byufeg);
+            context.SaveChanges();
+            return RedirectToAction("Data");
+        }
+
+        [HttpPost] //updates the form response and displays the updated movie list
+        public IActionResult UpdateRecord(Byufeg byufeg)
+        {
+            if (ModelState.IsValid)
+            {
+                //Update database
+                context.Byufeg.Update(byufeg);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Data", context.Byufeg);
+        }
+
         [HttpGet]
-        public  IActionResult FileUploadForm(int byufegId)
+        public IActionResult BurialForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BurialForm(Burial burial)
+        {
+            if (ModelState.IsValid)
+            {
+                burial.BurialConcat = $"{burial.BurialLocationNs}{burial.LowPairNs}{burial.HighPairNs}{burial.BurialLocationEw}{burial.LowPairEw}{burial.HighPairEw}{burial.BurialSubplot}";
+                context.Burial.Add(burial);
+                context.SaveChanges();
+                return RedirectToAction("AddRecord");
+            }
+            else
+                return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FileUploadForm(int byufegId)
         {
             ViewBag.BYUFEGID = byufegId;
 
